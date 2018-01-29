@@ -1,9 +1,39 @@
+# Mac OS X
+.DS_Store
+
+# Android project
+.gradle
+.android
+local.properties
+.idea/
+*.iml
+caches/
+native/
+build/
+*.hprof
+
+# Crashlytics
+crashlytics-build.properties
+com_crashlytics_export_strings.xml
+
+xcshareddata/
+xcuserdata/
+iOS/build/
+Android/app/build/
+Android/baker/build/
+iOS_Native/Build/
+vcs.xml
+misc.xml
+
+
+
+
+*.apk
 *.iml
 .gradle
 /local.properties
-/.idea/workspace.xml
-/.idea/libraries
-.DS_Store
 /build
 /captures
 .externalNativeBuild
+*.hprof
+
