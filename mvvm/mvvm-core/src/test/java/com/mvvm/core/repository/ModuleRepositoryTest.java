@@ -38,11 +38,15 @@ import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Collections;
 import java.util.List;
 
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.subscribers.TestSubscriber;
 
+import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
@@ -53,29 +57,57 @@ public class ModuleRepositoryTest {
 
     private ApplicationDatabase applicationDatabase;
     private ApiService apiService;
+    private ModuleDao moduleDao;
     private ModuleRepository moduleRepository;
     private EndpointManager endpointManager;
     private NetworkConnectivityService networkConnectivityService;
 
+    @Captor
+    private ArgumentCaptor<List<ModuleEntity>> mListModulesArgumentCaptor; //Capture return
+
+    private TestSubscriber<List<ModuleEntity>> moduleSubscriber; // Subscribe
+
+
     @Before
     public void setup() {
         applicationDatabase = mock(ApplicationDatabase.class);
+        moduleDao = mock(ModuleDao.class);
         apiService = mock(ApiService.class);
         endpointManager = mock(EndpointManager.class);
         networkConnectivityService = mock(NetworkConnectivityService.class);
 
         moduleRepository = new ModuleRepository(applicationDatabase, apiService, endpointManager, networkConnectivityService);
+        moduleSubscriber = TestSubscriber.create();
+    }
+
+    @Test
+    public void testRetrieveLocalData_WhenMobileNetworkOn() throws Exception {
+        // Given that the applicationDatabase returns an empty list of ModuleEntities
+
+        //Simulate network status
+        when(networkConnectivityService.getConnectionTypeObservable()).thenReturn(Observable.just(NetworkConnectivityService.ConnectionType.TYPE_MOBILE));
+        when(endpointManager.getAuthorizationToken()).thenReturn("1234abcd");
+        when(endpointManager.getAppId()).thenReturn("1234abcd");
+        when(applicationDatabase.moduleDao()).thenReturn(moduleDao);
+        when(moduleDao.loadAllModules()).thenReturn(Flowable.<List<ModuleEntity>>empty());
+
+        moduleRepository.retrieveLocalData().subscribe(moduleSubscriber);
+        moduleSubscriber.assertNoErrors();
+
+        moduleSubscriber.assertValue(Collections.EMPTY_LIST);
 
     }
 
     @Test
-    public void loadModules() {
-        // Given that the applicationDatabase returns an empty list of ModuleEntities
+    public void testFetchRemoteData_WhenMobileNetworkOn() throws Exception {
+        // Given that the ApiService returns a list of ModuleEntities
         when(networkConnectivityService.getConnectionTypeObservable()).thenReturn(Observable.just(NetworkConnectivityService.ConnectionType.TYPE_MOBILE));
-//        when(applicationDatabase.moduleDao().loadAllModules()).thenReturn(Flowable.<List<ModuleEntity>>empty());
+        when(apiService.fetchModules("1234abcd", "1234abcd")).thenReturn(Flowable.just(Collections.<ModuleEntity>singletonList(new ModuleEntity())));
 
-        moduleRepository.loadModules();
-        verify(applicationDatabase.moduleDao()).loadAllModules();
+        moduleRepository.fetchRemoteData();
+        moduleSubscriber.assertNoErrors();
+
+
     }
 
 //    @Test
