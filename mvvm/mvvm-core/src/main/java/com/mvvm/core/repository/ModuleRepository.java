@@ -2,7 +2,7 @@ package com.mvvm.core.repository;
 
 
 import com.mvvm.core.local.ApplicationDatabase;
-import com.mvvm.core.local.ModuleEntity;
+import com.mvvm.core.local.module.ModuleEntity;
 import com.mvvm.core.manager.EndpointManager;
 import com.mvvm.core.remote.ApiService;
 import com.mvvm.core.service.NetworkConnectivityService;
@@ -47,7 +47,6 @@ public class ModuleRepository extends BaseRepository {
      */
     public Flowable<List<ModuleEntity>> loadModules() {
         addDisposable(networkConnectivityService.getConnectionTypeObservable()
-                .filter(type -> !type.equals(NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET))
                 .subscribe(status -> fetchRemoteData(), modulesObservable::onError));
 
         return retrieveLocalData();

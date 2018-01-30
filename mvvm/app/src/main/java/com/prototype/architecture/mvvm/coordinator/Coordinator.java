@@ -2,7 +2,7 @@ package com.prototype.architecture.mvvm.coordinator;
 
 import android.content.Intent;
 
-import com.mvvm.core.local.ModuleEntity;
+import com.mvvm.core.local.module.ModuleEntity;
 import com.prototype.architecture.mvvm.ui.MainActivity;
 import com.prototype.architecture.mvvm.ui.base.BaseActivity;
 import com.prototype.architecture.mvvm.ui.drawer.DrawerAdapter;

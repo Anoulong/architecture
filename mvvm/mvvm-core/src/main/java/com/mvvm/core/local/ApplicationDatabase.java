@@ -3,6 +3,11 @@ package com.mvvm.core.local;
 import android.arch.persistence.room.Database;
 import android.arch.persistence.room.RoomDatabase;
 
+import com.mvvm.core.local.module.ModuleDao;
+import com.mvvm.core.local.module.ModuleEntity;
+import com.mvvm.core.local.news.NewsDao;
+import com.mvvm.core.local.news.NewsEntity;
+
 /*******************************************************************************
  * QuickSeries® Publishing inc.
  * <p>
@@ -16,10 +21,11 @@ import android.arch.persistence.room.RoomDatabase;
  * <p>
  * Created by Anou Chanthavong on 2018-01-29.
  ******************************************************************************/
-@Database(entities = {ModuleEntity.class}, version = 1, exportSchema = false)
+@Database(entities = {ModuleEntity.class, NewsEntity.class}, version = 1, exportSchema = false)
 public abstract class ApplicationDatabase extends RoomDatabase {
 
     public static final String DATABASE_NAME = "qs-rca-db";
 
     public abstract ModuleDao moduleDao();
+    public abstract NewsDao newsDao();
 }

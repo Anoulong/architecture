@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 
 import com.mvvm.core.common.utils.StringUtils;
-import com.mvvm.core.local.ModuleEntity;
+import com.mvvm.core.local.module.ModuleEntity;
 import com.mvvm.core.viewmodel.ModuleListViewModel;
 import com.prototype.architecture.mvvm.R;
 import com.prototype.architecture.mvvm.RcaApplication;

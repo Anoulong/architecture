@@ -1,6 +1,7 @@
 package com.mvvm.core.remote;
 
-import com.mvvm.core.local.ModuleEntity;
+import com.mvvm.core.local.module.ModuleEntity;
+import com.mvvm.core.local.news.NewsEntity;
 
 import java.util.List;
 
@@ -27,4 +28,7 @@ public interface ApiService {
 
     @GET("apps/{appId}/custom-modules")
     Flowable<List<ModuleEntity>> fetchModules(@Header("Authorization") String authorizationToken, @Path("appId") String appId);
+
+    @GET("apps/{appId}/news/{moduleEid}/posts")
+    Flowable<List<NewsEntity>> fetchNews(@Header("Authorization") String authorizationToken, @Path("appId") String appId, @Path("moduleEid") String moduleEid);
 }

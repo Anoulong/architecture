@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.annimon.stream.Stream;
 import com.mvvm.core.common.utils.StringUtils;
-import com.mvvm.core.local.ModuleEntity;
+import com.mvvm.core.local.module.ModuleEntity;
 import com.prototype.architecture.mvvm.R;
 import com.prototype.architecture.mvvm.ui.base.BaseRecyclerViewAdapter;
 

@@ -1,4 +1,4 @@
-package com.mvvm.core.local;
+package com.mvvm.core.local.module;
 
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;

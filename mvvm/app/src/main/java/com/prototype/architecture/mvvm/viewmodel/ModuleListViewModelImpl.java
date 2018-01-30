@@ -3,7 +3,7 @@ package com.prototype.architecture.mvvm.viewmodel;
 import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
-import com.mvvm.core.local.ModuleEntity;
+import com.mvvm.core.local.module.ModuleEntity;
 import com.mvvm.core.repository.ModuleRepository;
 import com.mvvm.core.viewmodel.ModuleListViewModel;
 

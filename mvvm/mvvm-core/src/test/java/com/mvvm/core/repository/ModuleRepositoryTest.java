@@ -16,27 +16,20 @@
 
 package com.mvvm.core.repository;
 
-import android.arch.core.executor.testing.InstantTaskExecutorRule;
-
 import com.mvvm.core.local.ApplicationDatabase;
-import com.mvvm.core.local.ModuleDao;
-import com.mvvm.core.local.ModuleEntity;
+import com.mvvm.core.local.module.ModuleDao;
+import com.mvvm.core.local.module.ModuleEntity;
 import com.mvvm.core.manager.EndpointManager;
 import com.mvvm.core.remote.ApiService;
 import com.mvvm.core.service.NetworkConnectivityService;
-import com.mvvm.core.viewmodel.ModuleListViewModel;
 
 import org.junit.Before;
-import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
-import org.mockito.MockitoAnnotations;
 import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.Collections;
@@ -44,12 +37,10 @@ import java.util.List;
 
 import io.reactivex.Flowable;
 import io.reactivex.Observable;
-import io.reactivex.Observer;
 import io.reactivex.subscribers.TestSubscriber;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.mock;
-import static org.mockito.Mockito.never;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -58,6 +49,7 @@ public class ModuleRepositoryTest {
 
     @InjectMocks
     private ModuleRepository moduleRepository;
+
     @Mock
     private ApplicationDatabase applicationDatabase;
     @Mock
@@ -77,72 +69,51 @@ public class ModuleRepositoryTest {
 
     @Before
     public void setup() {
-//        applicationDatabase = mock(ApplicationDatabase.class);
-//        moduleDao = mock(ModuleDao.class);
-//        apiService = mock(ApiService.class);
-//        endpointManager = mock(EndpointManager.class);
-//        networkConnectivityService = mock(NetworkConnectivityService.class);
-
-//        moduleRepository = new ModuleRepository(applicationDatabase, apiService, endpointManager, networkConnectivityService);
         moduleSubscriber = TestSubscriber.create();
     }
 
     @Test
-    public void testRetrieveLocalData_WhenMobileNetworkOn() throws Exception {
+    public void testRetrieveLocalData_Empty_WhenMobileNetworkOn() throws Exception {
         // Given that the applicationDatabase returns an empty list of ModuleEntities
 
         //Simulate network status
         when(networkConnectivityService.getConnectionTypeObservable()).thenReturn(Observable.just(NetworkConnectivityService.ConnectionType.TYPE_MOBILE));
+
+        //Simulate endpoint
         when(endpointManager.getAuthorizationToken()).thenReturn("1234abcd");
         when(endpointManager.getAppId()).thenReturn("1234abcd");
+
+        //Simulate Database
         when(applicationDatabase.moduleDao()).thenReturn(moduleDao);
         when(moduleDao.loadAllModules()).thenReturn(Flowable.<List<ModuleEntity>>empty());
 
         moduleRepository.retrieveLocalData().subscribe(moduleSubscriber);
-        moduleSubscriber.assertNoErrors();
 
+        moduleSubscriber.assertNoErrors();
         moduleSubscriber.assertValue(Collections.EMPTY_LIST);
 
     }
 
     @Test
-    public void testFetchRemoteData_WhenMobileNetworkOn() throws Exception {
-        // Given that the ApiService returns a list of ModuleEntities
+    public void testRetrieveLocalData_1Module_WhenMobileNetworkOn() throws Exception {
+        // Given that the applicationDatabase returns an empty list of ModuleEntities
+
+        //Simulate network status
         when(networkConnectivityService.getConnectionTypeObservable()).thenReturn(Observable.just(NetworkConnectivityService.ConnectionType.TYPE_MOBILE));
-        when(apiService.fetchModules("1234abcd", "1234abcd")).thenReturn(Flowable.just(Collections.<ModuleEntity>singletonList(new ModuleEntity())));
 
-        moduleRepository.fetchRemoteData();
+        //Simulate endpoint
+        when(endpointManager.getAuthorizationToken()).thenReturn("1234abcd");
+        when(endpointManager.getAppId()).thenReturn("1234abcd");
+
+        //Simulate Database
+        when(applicationDatabase.moduleDao()).thenReturn(moduleDao);
+        when(moduleDao.loadAllModules()).thenReturn(Flowable.<List<ModuleEntity>>empty());
+
+        moduleRepository.retrieveLocalData().subscribe(moduleSubscriber);
+
         moduleSubscriber.assertNoErrors();
-
+        moduleSubscriber.assertValue(Collections.EMPTY_LIST);
 
     }
 
-//    @Test
-//    public void goToNetwork() {
-//        MutableLiveData<User> dbData = new MutableLiveData<>();
-//        when(userDao.findByLogin("foo")).thenReturn(dbData);
-//        User user = TestUtil.createUser("foo");
-//        LiveData<ApiResponse<User>> call = ApiUtil.successCall(user);
-//        when(githubService.getUser("foo")).thenReturn(call);
-//        Observer<Resource<User>> observer = mock(Observer.class);
-//
-//        repo.loadUser("foo").observeForever(observer);
-//        verify(githubService, never()).getUser("foo");
-//        MutableLiveData<User> updatedDbData = new MutableLiveData<>();
-//        when(userDao.findByLogin("foo")).thenReturn(updatedDbData);
-//        dbData.setValue(null);
-//        verify(githubService).getUser("foo");
-//    }
-//
-//    @Test
-//    public void dontGoToNetwork() {
-//        MutableLiveData<User> dbData = new MutableLiveData<>();
-//        User user = TestUtil.createUser("foo");
-//        dbData.setValue(user);
-//        when(userDao.findByLogin("foo")).thenReturn(dbData);
-//        Observer<Resource<User>> observer = mock(Observer.class);
-//        repo.loadUser("foo").observeForever(observer);
-//        verify(githubService, never()).getUser("foo");
-//        verify(observer).onChanged(Resource.success(user));
-//    }
 }

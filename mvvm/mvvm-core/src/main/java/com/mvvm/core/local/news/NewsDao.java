@@ -1,8 +1,13 @@
-package com.mvvm.core.viewmodel;
+package com.mvvm.core.local.news;
+
+import android.arch.persistence.room.Dao;
+import android.arch.persistence.room.Insert;
+import android.arch.persistence.room.OnConflictStrategy;
+import android.arch.persistence.room.Query;
 
 import com.mvvm.core.local.module.ModuleEntity;
-import java.util.List;
 
+import java.util.List;
 
 import io.reactivex.Flowable;
 
@@ -17,8 +22,14 @@ import io.reactivex.Flowable;
  * Information and shall use it only in accordance with the terms of the license
  * agreement you entered into with QuickSeries® and QuickSeries's Partners.
  * <p>
- * Created by Anou Chanthavong on 2017-12-04.
+ * Created by Anou Chanthavong on 2018-01-30.
  ******************************************************************************/
-public interface ModuleListViewModel {
-     Flowable<List<ModuleEntity>> getModules();
+
+@Dao
+public interface NewsDao {
+    @Query("SELECT * FROM NewsEntity")
+    Flowable<List<NewsEntity>> loadAllModules();
+
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    void insertAll(List<NewsEntity> modules);
 }
