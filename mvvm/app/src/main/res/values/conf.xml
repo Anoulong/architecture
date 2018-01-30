@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="config_environment" translatable="false">dev</string>
+    <string name="pref_key_env" translatable="false">env</string>
+    <string name="dev_base_url_v2" translatable="false">https://api-dev.quickseries.com/v2.1/</string>
+    <string name="dev_base_url_v3" translatable="false">https://api-dev.quickseries.com/v3/</string>
+    <string name="staging_base_url_v2" translatable="false">https://api-staging.quickseries.com/v2.1/</string>
+    <string name="staging_base_url_v3" translatable="false">https://api-staging.quickseries.com/v3/</string>
+    <string name="prod_base_url_v2" translatable="false">https://api.quickseries.com/v2.1/</string>
+    <string name="prod_base_url_v3" translatable="false">https://api.quickseries.com/v3/</string>
+
+    <string name="authorization_value" translatable="false">Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlcXVpY2tzZXJpZXMiLCJleHAiOjE1MjQ1ODQ2NTksImlzcyI6InF1aWNrc2VyaWVzIiwiaWF0IjoxNDkzMDQ4NjU5LCJwZXJtaXNzaW9ucyI6WyJ3cml0ZTp1c2VyczpnbG9iYWwiLCJyZWFkOnVzZXJzOmdsb2JhbCIsIndyaXRlOnJvbGVzOmdsb2JhbCIsInJlYWQ6cm9sZXM6Z2xvYmFsIiwid3JpdGU6YXBwczpnbG9iYWwiLCJyZWFkOmFwcHM6Z2xvYmFsIiwid3JpdGU6Y29udGVudDpnbG9iYWwiLCJyZWFkOmNvbnRlbnQ6Z2xvYmFsIiwid3JpdGU6dGVhbXM6Z2xvYmFsIiwicmVhZDp0ZWFtczpnbG9iYWwiLCJ3cml0ZTpmZWVkczpnbG9iYWwiLCJyZWFkOmZlZWRzOmdsb2JhbCIsIndyaXRlOnBvc3RzOmdsb2JhbCIsInJlYWQ6cG9zdHM6Z2xvYmFsIiwid3JpdGU6cmVzb3VyY2VzOmdsb2JhbCIsInJlYWQ6cmVzb3VyY2VzOmdsb2JhbCIsIndyaXRlOnRyYW5zbGF0aW9uczpnbG9iYWwiLCJyZWFkOnRyYW5zbGF0aW9uczpnbG9iYWwiXX0.kFd6CHd46jrOF1joeHAoNH8MHb_CAqnwAaUGOR3I2e4</string>
+    <string name="app_id" translatable="false">b43fe736-eaa9-47a0-9a00-85d75b26d4fe</string>
+
+</resources>

@@ -25,16 +25,18 @@ android {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
+
 }
 ext {
-    archVersion = '1.0.0'
     androidSupportVersion = '27.0.2'
     daggerVersion = "2.8"
-    guavaVersion = '18.0'
     googleServicesVersion = "11.6.2"
+    archVersion = '1.0.0'
     firebaseVersion = googleServicesVersion
 }
 dependencies {
+    implementation project(':mvvm-core')
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation"org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
@@ -47,37 +49,21 @@ dependencies {
     implementation "com.android.support:design:$androidSupportVersion"
     implementation "com.android.support:recyclerview-v7:$androidSupportVersion"
 
-    // Dependency Injection
-    compile "com.google.dagger:dagger:${daggerVersion}"
-    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
-
-    //Architecture component
-    compile "android.arch.lifecycle:runtime:1.0.3"
-    compile "android.arch.lifecycle:extensions:$archVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$archVersion"
-
-    // Local data persistence
-    compile "android.arch.persistence.room:runtime:$archVersion"
-    compile "android.arch.persistence.room:rxjava2:$archVersion"
-    annotationProcessor "android.arch.persistence.room:compiler:$archVersion"
-
     // Observable library
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    compile 'io.reactivex.rxjava2:rxjava:2.1.5'
-
-    // Networking
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
 
     // Utils
-    compile "com.android.support:multidex:1.0.2"
-    compile "com.google.guava:guava:$guavaVersion"
-    compile "com.google.code.gson:gson:2.8.1"
+    implementation "com.google.code.gson:gson:2.8.1"
     provided 'javax.annotation:jsr250-api:1.0'
-    compile 'com.annimon:stream:1.1.9'
+    implementation 'com.annimon:stream:1.1.9'
 
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    // Dependency Injection
+    implementation "com.google.dagger:dagger:${daggerVersion}"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+
 }
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
+
