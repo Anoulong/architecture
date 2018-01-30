@@ -33,6 +33,7 @@ import org.junit.runner.RunWith;
 import org.junit.runners.JUnit4;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
@@ -55,11 +56,17 @@ import static org.mockito.Mockito.when;
 @RunWith(MockitoJUnitRunner.class)
 public class ModuleRepositoryTest {
 
-    private ApplicationDatabase applicationDatabase;
-    private ApiService apiService;
-    private ModuleDao moduleDao;
+    @InjectMocks
     private ModuleRepository moduleRepository;
+    @Mock
+    private ApplicationDatabase applicationDatabase;
+    @Mock
+    private ApiService apiService;
+    @Mock
+    private ModuleDao moduleDao;
+    @Mock
     private EndpointManager endpointManager;
+    @Mock
     private NetworkConnectivityService networkConnectivityService;
 
     @Captor
@@ -70,13 +77,13 @@ public class ModuleRepositoryTest {
 
     @Before
     public void setup() {
-        applicationDatabase = mock(ApplicationDatabase.class);
-        moduleDao = mock(ModuleDao.class);
-        apiService = mock(ApiService.class);
-        endpointManager = mock(EndpointManager.class);
-        networkConnectivityService = mock(NetworkConnectivityService.class);
+//        applicationDatabase = mock(ApplicationDatabase.class);
+//        moduleDao = mock(ModuleDao.class);
+//        apiService = mock(ApiService.class);
+//        endpointManager = mock(EndpointManager.class);
+//        networkConnectivityService = mock(NetworkConnectivityService.class);
 
-        moduleRepository = new ModuleRepository(applicationDatabase, apiService, endpointManager, networkConnectivityService);
+//        moduleRepository = new ModuleRepository(applicationDatabase, apiService, endpointManager, networkConnectivityService);
         moduleSubscriber = TestSubscriber.create();
     }
 
