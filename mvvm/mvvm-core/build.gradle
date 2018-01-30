@@ -52,9 +52,24 @@ dependencies {
     provided 'javax.annotation:jsr250-api:1.0'
     implementation 'com.annimon:stream:1.1.9'
 
+    // Test library
     testImplementation 'junit:junit:4.12'
+    testImplementation 'org.assertj:assertj-core:3.8.0'
     androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test:rules:1.0.1'
     androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    // Test helpers for LiveData
+    testImplementation "android.arch.core:core-testing:1.1.0"
+    // Test helpers for Room
+    testImplementation "android.arch.persistence.room:testing:1.0.0"
+    // Powermock test
+//    testImplementation 'com.google.dexmaker:dexmaker:1.2'
+//    testImplementation 'com.google.dexmaker:dexmaker-mockito:1.2'
+//    testImplementation 'org.mockito:mockito-core:2.8.47'
+    testImplementation "org.powermock:powermock-module-junit4:1.7.0RC4"
+    testImplementation "org.powermock:powermock-module-junit4-rule:1.7.0RC4"
+    testImplementation "org.powermock:powermock-api-mockito2:1.7.0RC4"
+    testImplementation "org.powermock:powermock-classloading-xstream:1.7.0RC4"
 }
 
 sourceCompatibility = "1.8"

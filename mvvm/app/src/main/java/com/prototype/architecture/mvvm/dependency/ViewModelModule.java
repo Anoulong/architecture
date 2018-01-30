@@ -4,7 +4,7 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
 
-import com.prototype.architecture.mvvm.viewmodel.ModuleListViewModel;
+import com.prototype.architecture.mvvm.viewmodel.ModuleListViewModelImpl;
 import com.prototype.architecture.mvvm.viewmodel.ViewModelFactory;
 
 import dagger.Binds;
@@ -15,8 +15,8 @@ import dagger.multibindings.IntoMap;
 public abstract class ViewModelModule {
     @Binds
     @IntoMap
-    @ViewModelKey(ModuleListViewModel.class)
-    public abstract ViewModel bindModuleListViewModel(ModuleListViewModel moduleListViewModel);
+    @ViewModelKey(ModuleListViewModelImpl.class)
+    public abstract ViewModel bindModuleListViewModel(ModuleListViewModelImpl moduleListViewModel);
 
 //    @Binds
 //    @IntoMap

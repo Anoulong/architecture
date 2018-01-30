@@ -27,7 +27,6 @@ public abstract class BaseRepository {
     protected CompositeDisposable repositorySubscriptions;
 
     public BaseRepository() {
-        Log.d(TAG, "Initialize repositorySubscriptions" );
         this.repositorySubscriptions = new CompositeDisposable();
     }
 
