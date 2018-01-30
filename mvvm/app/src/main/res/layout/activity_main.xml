@@ -8,18 +8,58 @@
     android:fitsSystemWindows="true"
     tools:openDrawer="start">
 
-    <include
-        layout="@layout/app_bar_main"
+    <android.support.design.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-    <android.support.design.widget.NavigationView
-        android:id="@+id/nav_view"
-        android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:fitsSystemWindows="true"
-        app:headerLayout="@layout/nav_header_main"
-        app:menu="@menu/activity_main_drawer" />
+        tools:context="com.quickseries.ui.MainActivity">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:theme="@style/AppTheme.AppBarOverlay">
+
+            <android.support.v7.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                android:background="?attr/colorPrimary"
+                app:popupTheme="@style/AppTheme.PopupOverlay" />
+
+        </android.support.design.widget.AppBarLayout>
+
+
+        <!-- The main content view -->
+        <FrameLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior"
+            tools:context="com.quickseries.ui.MainActivity">
+
+            <TextView
+                android:id="@+id/textview_main_module"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Hello World!"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </FrameLayout>
+
+    </android.support.design.widget.CoordinatorLayout>
+
+
+    <!-- Navigation Drawer-->
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/drawerRecyclerView"
+        android:layout_width="200dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="left"
+        android:background="#ffffff"
+        tools:listitem="@layout/item_drawer_module">
+
+    </android.support.v7.widget.RecyclerView>
 
 </android.support.v4.widget.DrawerLayout>
+

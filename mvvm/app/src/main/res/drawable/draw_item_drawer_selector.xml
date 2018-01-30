@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ripple xmlns:android="http://schemas.android.com/apk/res/android"
+    android:color="@color/colorPrimary">
+    <!-- Ripple mask - applied to all selector states -->
+    <item android:id="@android:id/mask">
+        <shape android:shape="rectangle">
+            <solid android:color="@color/colorPrimary"/>
+        </shape>
+    </item>
+    <!-- Selected state of item -->
+    <item>
+        <selector>
+            <item android:state_pressed="true">
+                <shape android:shape="rectangle">
+                </shape>
+            </item>
+            <item android:state_selected="true">
+                <shape android:shape="rectangle">
+                </shape>
+            </item>
+
+            <item android:state_pressed="false">
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/white" />
+                </shape>
+            </item>
+            <item android:state_selected="false">
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/white" />
+                </shape>
+            </item>
+
+            <item>
+                <shape android:shape="rectangle">
+                    <solid android:color="@android:color/white" />
+                </shape>
+            </item>
+        </selector>
+    </item>
+</ripple>

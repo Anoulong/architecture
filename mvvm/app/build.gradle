@@ -49,18 +49,33 @@ dependencies {
     implementation "com.android.support:design:$androidSupportVersion"
     implementation "com.android.support:recyclerview-v7:$androidSupportVersion"
 
+    // Dependency Injection
+    implementation "com.google.dagger:dagger:${daggerVersion}"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
+
+    //Architecture component
+    implementation "android.arch.lifecycle:runtime:1.0.3"
+    implementation "android.arch.lifecycle:extensions:$archVersion"
+    annotationProcessor "android.arch.lifecycle:compiler:$archVersion"
+
+    // Local data persistence
+    implementation "android.arch.persistence.room:runtime:$archVersion"
+    implementation "android.arch.persistence.room:rxjava2:$archVersion"
+    annotationProcessor "android.arch.persistence.room:compiler:$archVersion"
+
     // Observable library
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
+
+    // Networking
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
     // Utils
     implementation "com.google.code.gson:gson:2.8.1"
     provided 'javax.annotation:jsr250-api:1.0'
     implementation 'com.annimon:stream:1.1.9'
-
-    // Dependency Injection
-    implementation "com.google.dagger:dagger:${daggerVersion}"
-    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 
 }
 

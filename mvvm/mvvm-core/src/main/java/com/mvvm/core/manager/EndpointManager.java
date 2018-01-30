@@ -10,7 +10,14 @@ public interface EndpointManager {
     enum Environment {dev, staging, prod}
 
     Environment getCurrentEnvironment();
+
     void setEnvironement(Environment env);
+
     String getAuthorizationToken();
+
     String getAppId();
+
+    String getBaseUrlV2();
+
+    String getBaseUrlV3();
 }

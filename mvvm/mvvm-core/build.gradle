@@ -33,11 +33,6 @@ ext {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
-    //Architecture component
-    compile "android.arch.lifecycle:runtime:1.0.3"
-    compile "android.arch.lifecycle:extensions:$archVersion"
-    annotationProcessor "android.arch.lifecycle:compiler:$archVersion"
-
     // Local data persistence
     implementation "android.arch.persistence.room:runtime:$archVersion"
     implementation "android.arch.persistence.room:rxjava2:$archVersion"
@@ -49,7 +44,7 @@ dependencies {
 
     // Networking
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
 
     // Utils
