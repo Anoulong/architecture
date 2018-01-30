@@ -1,0 +1,307 @@
+[
+    {
+        "_id": "59dce988a4b8cb213f1cc5c1",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "cd213da8-064e-48d8-badb-aa5df9a14464",
+        "title": "Welcome 12",
+        "slug": "Welcome",
+        "type": "text",
+        "description": "Welcome.",
+        "core_module_eid": "46682974-9240-40c7-b6ca-6c00a8e534f7",
+        "showBranding": false,
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2018-01-18T16:04:23.089Z",
+        "created_at": "2017-10-10T15:38:48.822Z",
+        "sidemenu": {
+            "mobile": true,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "59e5041f32af987fd8b405b5",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "abada864-0a73-4def-aae6-ee7b1534ab65",
+        "title": "Nanocodes Search",
+        "slug": "test-pdf",
+        "type": "pdfs",
+        "description": "",
+        "core_module_eid": "1b9c60d2-6361-4700-98ed-c8149687bd95",
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2017-11-02T16:39:09.406Z",
+        "created_at": "2017-10-16T19:10:23.311Z",
+        "sidemenu": {
+            "mobile": true,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "59dce94da4b8cb213f1cc5c0",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "bc8547da-7cf1-4308-86f8-c0004c9e7b1e",
+        "title": "FAQ",
+        "slug": "FAQ",
+        "type": "faq",
+        "description": "",
+        "core_module_eid": "08300a99-6afe-47a5-bea7-6112299b8645",
+        "showBranding": false,
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2017-12-06T23:23:54.096Z",
+        "created_at": "2017-10-10T15:37:49.720Z",
+        "sidemenu": {
+            "mobile": true,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "59dce911a4b8cb213f1cc5bd",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "c4293855-3ead-4032-be2f-784e892e3538",
+        "title": "Resources",
+        "slug": "Resources",
+        "type": "resources",
+        "description": "",
+        "core_module_eid": "b6559d7d-653b-419a-a95f-13ff92e6737c",
+        "showBranding": false,
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2017-12-07T16:49:58.815Z",
+        "created_at": "2017-10-10T15:36:49.034Z",
+        "sidemenu": {
+            "mobile": true,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "59dce921a4b8cb213f1cc5be",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "422a8689-6eb0-4466-b3a1-00d7dfe4a6b2",
+        "title": "Catalog",
+        "slug": "Catalog",
+        "type": "resources",
+        "description": "",
+        "core_module_eid": "b6559d7d-653b-419a-a95f-13ff92e6737c",
+        "showBranding": false,
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2017-10-10T15:37:05.596Z",
+        "created_at": "2017-10-10T15:37:05.594Z",
+        "sidemenu": {
+            "mobile": true,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "59e64bbd32af987fd8b405bd",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "e2f60328-8f02-448a-8536-78b0f8ea6e2b",
+        "title": "News 123",
+        "slug": "news",
+        "type": "news",
+        "description": "",
+        "core_module_eid": "b9b5d553-c865-4bec-8fde-bd91ae6379c6",
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2017-12-06T22:21:22.787Z",
+        "created_at": "2017-10-17T18:28:13.538Z",
+        "sidemenu": {
+            "mobile": true,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "59e7721432af987fd8b405bf",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "7a907bbc-2706-43cb-90f7-3a15a9a53a5b",
+        "title": "Library 123",
+        "slug": "Library",
+        "type": "library",
+        "description": "",
+        "core_module_eid": "d9e764bb-28e6-474e-a206-28ffc561bfa3",
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2017-12-06T22:50:06.273Z",
+        "created_at": "2017-10-18T15:24:04.119Z",
+        "sidemenu": {
+            "mobile": true,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "59ef7d0632af987fd8b40677",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "5638a9a5-6171-4466-811d-6fec75f5f164",
+        "title": "Checklist",
+        "slug": "Checklist",
+        "type": "checklists",
+        "description": "bmnbm",
+        "core_module_eid": "6988cc17-4222-45e8-bca8-918382379571",
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2017-12-06T21:41:33.583Z",
+        "created_at": "2017-10-24T17:48:54.210Z",
+        "sidemenu": {
+            "mobile": true,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "59dce8fca4b8cb213f1cc5bc",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "a4177931-8bb7-4aea-bab9-5ec5e35f83a2",
+        "title": "PDF Library",
+        "slug": "PDF-Library",
+        "type": "pdfs",
+        "description": "",
+        "core_module_eid": "1b9c60d2-6361-4700-98ed-c8149687bd95",
+        "showBranding": false,
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2017-12-06T19:56:18.605Z",
+        "created_at": "2017-10-10T15:36:28.210Z",
+        "sidemenu": {
+            "mobile": true,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "5a15b308a57aaa67f97c44c8",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "54e5266c-64bc-443a-b81d-feb48032b1fb",
+        "title": "On-boarding",
+        "slug": "On-boarding",
+        "type": "on-boarding",
+        "description": "",
+        "core_module_eid": "5c0f1c35-196f-48ca-ba00-57c598290130",
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2017-11-22T17:25:30.204Z",
+        "created_at": "2017-11-22T17:25:28.325Z",
+        "sidemenu": {
+            "mobile": false,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "5a26f6af4a2fe709f2830b0d",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "07567810-9d48-4b17-ab20-b7ad5fd59113",
+        "title": "new FAQ",
+        "slug": "new-FAQ",
+        "type": "faq",
+        "description": "",
+        "core_module_eid": "08300a99-6afe-47a5-bea7-6112299b8645",
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2017-12-05T19:42:39.031Z",
+        "created_at": "2017-12-05T19:42:39.029Z",
+        "sidemenu": {
+            "mobile": true,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "5a26f6ba4a2fe709f2830b14",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "06c3b16a-57dd-4726-8099-0e99eb792cc0",
+        "title": "new video library",
+        "slug": "new-video-library",
+        "type": "videos",
+        "description": "",
+        "core_module_eid": "10b52fb6-923c-4604-93e6-b0d1dd6d0b2a",
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2017-12-05T19:42:50.459Z",
+        "created_at": "2017-12-05T19:42:50.457Z",
+        "sidemenu": {
+            "mobile": true,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "5a26f6c64a2fe709f2830b1a",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "e002f233-ae78-4cab-bb6c-80b4dd3dab81",
+        "title": "new push notification",
+        "slug": "new-push-notification",
+        "type": "push-notification",
+        "description": "",
+        "core_module_eid": "d134678c-0143-4785-8951-e29179f1be80",
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2018-01-09T22:22:51.267Z",
+        "created_at": "2017-12-05T19:43:02.872Z",
+        "sidemenu": {
+            "mobile": false,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "5a28228f67e2701837a74faa",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "86b306a9-c49e-4f1c-8a9e-3cea8f104f87",
+        "title": "A module with a really long name - should be displayed on at least three rows",
+        "slug": "A-module-with-a-really-long-name-should-be-displayed-on-at-least-three-rows",
+        "type": "faq",
+        "description": "",
+        "core_module_eid": "08300a99-6afe-47a5-bea7-6112299b8645",
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2017-12-06T17:02:07.536Z",
+        "created_at": "2017-12-06T17:02:07.532Z",
+        "sidemenu": {
+            "mobile": true,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    },
+    {
+        "_id": "5a60cf66b35de534548e2bee",
+        "app_eid": "fda02911-f8e4-448c-b2f2-c1ba38c89db5",
+        "eid": "0ac3135a-bbb6-4267-be8a-940574758e38",
+        "title": "About the app 2",
+        "slug": "About-the-app-2",
+        "type": "about-us",
+        "description": "",
+        "core_module_eid": "460d122d-153b-4cc6-af01-a383d2cf4877",
+        "__v": 0,
+        "_active": true,
+        "updated_at": "2018-01-18T16:46:30.080Z",
+        "created_at": "2018-01-18T16:46:30.078Z",
+        "sidemenu": {
+            "mobile": true,
+            "web": true
+        },
+        "disabled": false,
+        "content_refresh_rate": 5
+    }
+]
