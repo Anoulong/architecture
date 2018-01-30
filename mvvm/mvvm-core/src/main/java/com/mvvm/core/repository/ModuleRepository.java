@@ -47,6 +47,7 @@ public class ModuleRepository extends BaseRepository {
      */
     public Flowable<List<ModuleEntity>> loadModules() {
         addDisposable(networkConnectivityService.getConnectionTypeObservable()
+                .filter(type -> !type.equals(NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET))
                 .subscribe(status -> fetchRemoteData(), modulesObservable::onError));
 
         return retrieveLocalData();

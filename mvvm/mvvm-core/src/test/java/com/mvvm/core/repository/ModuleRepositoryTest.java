@@ -32,6 +32,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -39,8 +40,11 @@ import io.reactivex.Flowable;
 import io.reactivex.Observable;
 import io.reactivex.subscribers.TestSubscriber;
 
-import static org.hamcrest.MatcherAssert.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -69,19 +73,14 @@ public class ModuleRepositoryTest {
 
     @Before
     public void setup() {
+        when(endpointManager.getAuthorizationToken()).thenReturn("AuthorizationToken");
+        when(endpointManager.getAppId()).thenReturn("AppId");
         moduleSubscriber = TestSubscriber.create();
     }
 
     @Test
-    public void testRetrieveLocalData_Empty_WhenMobileNetworkOn() throws Exception {
+    public void testRetrieveLocalData() throws Exception {
         // Given that the applicationDatabase returns an empty list of ModuleEntities
-
-        //Simulate network status
-        when(networkConnectivityService.getConnectionTypeObservable()).thenReturn(Observable.just(NetworkConnectivityService.ConnectionType.TYPE_MOBILE));
-
-        //Simulate endpoint
-        when(endpointManager.getAuthorizationToken()).thenReturn("1234abcd");
-        when(endpointManager.getAppId()).thenReturn("1234abcd");
 
         //Simulate Database
         when(applicationDatabase.moduleDao()).thenReturn(moduleDao);
@@ -95,24 +94,75 @@ public class ModuleRepositoryTest {
     }
 
     @Test
-    public void testRetrieveLocalData_1Module_WhenMobileNetworkOn() throws Exception {
-        // Given that the applicationDatabase returns an empty list of ModuleEntities
-
+    public void testLoadModulesEmpty() throws Exception {
+        // Given that the applicationDatabase returns a list of ModuleEntities
         //Simulate network status
         when(networkConnectivityService.getConnectionTypeObservable()).thenReturn(Observable.just(NetworkConnectivityService.ConnectionType.TYPE_MOBILE));
 
-        //Simulate endpoint
-        when(endpointManager.getAuthorizationToken()).thenReturn("1234abcd");
-        when(endpointManager.getAppId()).thenReturn("1234abcd");
+        //Simulate ApiService call
+        when(apiService.fetchModules(endpointManager.getAuthorizationToken(), endpointManager.getAppId())).thenReturn(Flowable.<List<ModuleEntity>>empty());
 
         //Simulate Database
         when(applicationDatabase.moduleDao()).thenReturn(moduleDao);
         when(moduleDao.loadAllModules()).thenReturn(Flowable.<List<ModuleEntity>>empty());
 
-        moduleRepository.retrieveLocalData().subscribe(moduleSubscriber);
+        moduleRepository.loadModules().subscribe(moduleSubscriber);
 
         moduleSubscriber.assertNoErrors();
         moduleSubscriber.assertValue(Collections.EMPTY_LIST);
+
+    }
+
+    @Test
+    public void testLoadModules() throws Exception {
+        // Given that the applicationDatabase returns a list of 1 ModuleEntity
+
+        ModuleEntity module = mock(ModuleEntity.class);
+
+
+        //Simulate network status
+        when(networkConnectivityService.getConnectionTypeObservable()).thenReturn(Observable.just(NetworkConnectivityService.ConnectionType.TYPE_MOBILE));
+
+
+        //Simulate ApiService call
+        when(apiService.fetchModules(endpointManager.getAuthorizationToken(), endpointManager.getAppId())).thenReturn(Flowable.just(Collections.<ModuleEntity>singletonList(module)));
+
+        //Simulate Database
+        when(applicationDatabase.moduleDao()).thenReturn(moduleDao);
+        when(moduleDao.loadAllModules()).thenReturn(Flowable.just(Collections.<ModuleEntity>singletonList(module)));
+
+        //simulate load module
+        moduleRepository.loadModules().subscribe(moduleSubscriber);
+
+        verify(moduleDao).insertAll(mListModulesArgumentCaptor.capture());
+
+        assertThat(mListModulesArgumentCaptor.getValue()).isNotEmpty();
+
+        moduleSubscriber.assertNoErrors();
+
+    }
+
+    @Test
+    public void testLoadModulesNoInternet() throws Exception {
+        // Given that the applicationDatabase returns a list of 1 ModuleEntity
+
+        ModuleEntity module1 = mock(ModuleEntity.class);
+        ModuleEntity module2 = mock(ModuleEntity.class);
+        ModuleEntity module3 = mock(ModuleEntity.class);
+
+        //Simulate network status
+        when(networkConnectivityService.getConnectionTypeObservable()).thenReturn(Observable.just(NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET));
+
+        //Simulate Database
+        when(applicationDatabase.moduleDao()).thenReturn(moduleDao);
+        when(moduleDao.loadAllModules()).thenReturn(Flowable.just(Arrays.asList((ModuleEntity) module1, (ModuleEntity) module2, (ModuleEntity)module3)));
+
+        moduleRepository.loadModules().subscribe(moduleSubscriber);
+
+        verify(apiService, times(0)).fetchModules(anyString(), anyString());
+        verify(moduleDao, times(0)).insertAll(any());
+
+        moduleSubscriber.assertNoErrors();
 
     }
 
