@@ -1,6 +1,7 @@
 package com.mvvm.core.local.news;
 
 
+import android.arch.persistence.room.ColumnInfo;
 import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
@@ -21,6 +22,8 @@ public class NewsEntity implements Serializable{
     private String eid;
     @Embedded
     private Title title;
+    @Embedded
+    private Photo photo;
 
     @NonNull
     public String getId() {
@@ -55,9 +58,18 @@ public class NewsEntity implements Serializable{
         this.title = title;
     }
 
+    public Photo getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
+    }
+
+    //region Embedded Classes
     @Entity
     public static class Title {
-
+        @ColumnInfo(name = "title_en")
         private String en;
 
         public String getEn() {
@@ -68,4 +80,19 @@ public class NewsEntity implements Serializable{
             this.en = en;
         }
     }
+
+    @Entity
+    public static class Photo {
+        @ColumnInfo(name = "photo_en")
+        private String en;
+
+        public String getEn() {
+            return en;
+        }
+
+        public void setEn(String en) {
+            this.en = en;
+        }
+    }
+    //endregion
 }
