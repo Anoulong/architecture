@@ -8,11 +8,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.mvvm.core.viewmodel.ModuleListViewModel;
 import com.prototype.architecture.mvvm.R;
 import com.prototype.architecture.mvvm.RcaApplication;
 import com.prototype.architecture.mvvm.coordinator.Coordinator;
 import com.prototype.architecture.mvvm.ui.base.BaseFragment;
+import com.prototype.architecture.mvvm.viewmodel.ModuleListViewModel;
 
 import javax.inject.Inject;
 

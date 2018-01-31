@@ -5,7 +5,6 @@ import android.util.Log;
 
 import com.mvvm.core.local.module.ModuleEntity;
 import com.mvvm.core.repository.ModuleRepository;
-import com.mvvm.core.viewmodel.ModuleListViewModel;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
@@ -27,13 +26,13 @@ import io.reactivex.Flowable;
  * <p>
  * Created by Anou Chanthavong on 2017-12-04.
  ******************************************************************************/
-public class ModuleListViewModelImpl extends ViewModel implements ModuleListViewModel {
-    private static final String TAG = ModuleListViewModelImpl.class.getSimpleName();
+public class ModuleListViewModel extends ViewModel  {
+    private static final String TAG = ModuleListViewModel.class.getSimpleName();
 
     private final ModuleRepository moduleRepository;
 
     @Inject
-    public ModuleListViewModelImpl(ModuleRepository moduleRepository) {
+    public ModuleListViewModel(ModuleRepository moduleRepository) {
         this.moduleRepository = moduleRepository;
     }
 
