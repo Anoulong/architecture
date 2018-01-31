@@ -17,8 +17,8 @@
 package com.mvvm.core.repository;
 
 import com.mvvm.core.local.ApplicationDatabase;
+import com.mvvm.core.local.module.Module;
 import com.mvvm.core.local.module.ModuleDao;
-import com.mvvm.core.local.module.ModuleEntity;
 import com.mvvm.core.manager.EndpointManager;
 import com.mvvm.core.remote.ApiService;
 import com.mvvm.core.service.NetworkConnectivityService;
@@ -66,9 +66,9 @@ public class ModulesRepositoryTest {
     private NetworkConnectivityService networkConnectivityService;
 
     @Captor
-    private ArgumentCaptor<List<ModuleEntity>> mListModulesArgumentCaptor; //Capture return
+    private ArgumentCaptor<List<Module>> mListModulesArgumentCaptor; //Capture return
 
-    private TestSubscriber<List<ModuleEntity>> moduleSubscriber; // Subscribe
+    private TestSubscriber<List<Module>> moduleSubscriber; // Subscribe
 
 
     @Before
@@ -84,7 +84,7 @@ public class ModulesRepositoryTest {
 
         //Simulate Database
         when(applicationDatabase.moduleDao()).thenReturn(moduleDao);
-        when(moduleDao.loadAllModules()).thenReturn(Flowable.<List<ModuleEntity>>empty());
+        when(moduleDao.loadAllModules()).thenReturn(Flowable.<List<Module>>empty());
 
         moduleRepository.retrieveLocalData().subscribe(moduleSubscriber);
 
@@ -100,11 +100,11 @@ public class ModulesRepositoryTest {
         when(networkConnectivityService.getConnectionTypeObservable()).thenReturn(Observable.just(NetworkConnectivityService.ConnectionType.TYPE_MOBILE));
 
         //Simulate ApiService call
-        when(apiService.fetchModules(endpointManager.getAuthorizationToken(), endpointManager.getAppId())).thenReturn(Flowable.<List<ModuleEntity>>empty());
+        when(apiService.fetchModules(endpointManager.getAuthorizationToken(), endpointManager.getAppId())).thenReturn(Flowable.<List<Module>>empty());
 
         //Simulate Database
         when(applicationDatabase.moduleDao()).thenReturn(moduleDao);
-        when(moduleDao.loadAllModules()).thenReturn(Flowable.<List<ModuleEntity>>empty());
+        when(moduleDao.loadAllModules()).thenReturn(Flowable.<List<Module>>empty());
 
         moduleRepository.loadModules().subscribe(moduleSubscriber);
 
@@ -115,9 +115,9 @@ public class ModulesRepositoryTest {
 
     @Test
     public void testLoadModules() throws Exception {
-        // Given that the applicationDatabase returns a list of 1 ModuleEntity
+        // Given that the applicationDatabase returns a list of 1 Module
 
-        ModuleEntity module = mock(ModuleEntity.class);
+        Module module = mock(Module.class);
 
 
         //Simulate network status
@@ -125,11 +125,11 @@ public class ModulesRepositoryTest {
 
 
         //Simulate ApiService call
-        when(apiService.fetchModules(endpointManager.getAuthorizationToken(), endpointManager.getAppId())).thenReturn(Flowable.just(Collections.<ModuleEntity>singletonList(module)));
+        when(apiService.fetchModules(endpointManager.getAuthorizationToken(), endpointManager.getAppId())).thenReturn(Flowable.just(Collections.<Module>singletonList(module)));
 
         //Simulate Database
         when(applicationDatabase.moduleDao()).thenReturn(moduleDao);
-        when(moduleDao.loadAllModules()).thenReturn(Flowable.just(Collections.<ModuleEntity>singletonList(module)));
+        when(moduleDao.loadAllModules()).thenReturn(Flowable.just(Collections.<Module>singletonList(module)));
 
         //simulate load module
         moduleRepository.loadModules().subscribe(moduleSubscriber);
@@ -144,18 +144,18 @@ public class ModulesRepositoryTest {
 
     @Test
     public void testLoadModulesNoInternet() throws Exception {
-        // Given that the applicationDatabase returns a list of 1 ModuleEntity
+        // Given that the applicationDatabase returns a list of 1 Module
 
-        ModuleEntity module1 = mock(ModuleEntity.class);
-        ModuleEntity module2 = mock(ModuleEntity.class);
-        ModuleEntity module3 = mock(ModuleEntity.class);
+        Module module1 = mock(Module.class);
+        Module module2 = mock(Module.class);
+        Module module3 = mock(Module.class);
 
         //Simulate network status
         when(networkConnectivityService.getConnectionTypeObservable()).thenReturn(Observable.just(NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET));
 
         //Simulate Database
         when(applicationDatabase.moduleDao()).thenReturn(moduleDao);
-        when(moduleDao.loadAllModules()).thenReturn(Flowable.just(Arrays.asList((ModuleEntity) module1, (ModuleEntity) module2, (ModuleEntity)module3)));
+        when(moduleDao.loadAllModules()).thenReturn(Flowable.just(Arrays.asList((Module) module1, (Module) module2, (Module)module3)));
 
         moduleRepository.loadModules().subscribe(moduleSubscriber);
 

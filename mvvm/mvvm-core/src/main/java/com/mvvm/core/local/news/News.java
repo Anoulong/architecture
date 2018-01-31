@@ -13,7 +13,7 @@ import java.io.Serializable;
  * Created by laf on 2017-05-05.
  */
 @Entity
-public class NewsEntity implements Serializable{
+public class News implements Serializable{
 
     @PrimaryKey
     @NonNull

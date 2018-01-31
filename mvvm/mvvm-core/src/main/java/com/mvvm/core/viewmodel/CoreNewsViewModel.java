@@ -3,9 +3,7 @@ package com.mvvm.core.viewmodel;
 import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
-import com.mvvm.core.local.module.ModuleEntity;
-import com.mvvm.core.local.news.NewsEntity;
-import com.mvvm.core.repository.ModulesRepository;
+import com.mvvm.core.local.news.News;
 import com.mvvm.core.repository.NewsRepository;
 
 import java.util.List;
@@ -38,7 +36,7 @@ public class CoreNewsViewModel extends ViewModel  {
     /**
      * Expose the Observable News query so the UI can observe it.
      */
-    public Flowable<List<NewsEntity>> getNews() {
+    public Flowable<List<News>> getNews() {
         //Drop DB data if we can fetch item fast enough from the API
         //to avoid UI flickers
         return newsRepository.loadNews().debounce(400, TimeUnit.MILLISECONDS);

@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.annimon.stream.Stream;
 import com.mvvm.core.common.utils.StringUtils;
-import com.mvvm.core.local.module.ModuleEntity;
+import com.mvvm.core.local.module.Module;
 import com.prototype.architecture.mvvm.R;
 import com.prototype.architecture.mvvm.ui.base.BaseRecyclerViewAdapter;
 
@@ -81,7 +81,7 @@ public class DrawerAdapter extends BaseRecyclerViewAdapter<DrawerAdapter.DrawerI
     }
 
     private void setupDrawerModule(DrawerModuleViewHolder moduleViewHolder, DrawerItem item) {
-        ModuleEntity module = item.getModuleEntity();
+        Module module = item.getModule();
 
         moduleViewHolder.title.setText(module.getTitle());
         moduleViewHolder.title.setTextColor( ContextCompat.getColor(getContext(), isSelected(moduleViewHolder.getAdapterPosition()) ? R.color.colorPrimary : R.color.colorPrimaryDark));
@@ -113,7 +113,7 @@ public class DrawerAdapter extends BaseRecyclerViewAdapter<DrawerAdapter.DrawerI
         Stream.of(data)
                 .indexed()
                 .filter(pair -> pair.getSecond().getItemType().equals(DrawerItem.ItemType.module))
-                .forEach(pair -> itemIdList.put(pair.getSecond().getModuleEntity().getEid(), pair.getFirst()));
+                .forEach(pair -> itemIdList.put(pair.getSecond().getModule().getEid(), pair.getFirst()));
         super.setData(data);
     }
 
@@ -135,7 +135,7 @@ public class DrawerAdapter extends BaseRecyclerViewAdapter<DrawerAdapter.DrawerI
         }
 
         private ItemType itemType;
-        private ModuleEntity moduleEntity;
+        private Module module;
         private String contentText;
 
         public DrawerItem(ItemType itemType) {
@@ -147,17 +147,17 @@ public class DrawerAdapter extends BaseRecyclerViewAdapter<DrawerAdapter.DrawerI
             this.contentText = contentText;
         }
 
-        public DrawerItem(ItemType itemType, ModuleEntity moduleEntity) {
+        public DrawerItem(ItemType itemType, Module module) {
             this.itemType = itemType;
-            this.moduleEntity = moduleEntity;
+            this.module = module;
         }
 
         public ItemType getItemType() {
             return itemType;
         }
 
-        public ModuleEntity getModuleEntity() {
-            return moduleEntity;
+        public Module getModule() {
+            return module;
         }
 
         public String getContentText() {

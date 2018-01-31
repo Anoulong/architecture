@@ -2,7 +2,7 @@ package com.prototype.architecture.mvvm.coordinator;
 
 import android.content.Intent;
 
-import com.mvvm.core.local.module.ModuleEntity;
+import com.mvvm.core.local.module.Module;
 import com.prototype.architecture.mvvm.ui.MainActivity;
 import com.prototype.architecture.mvvm.ui.base.BaseActivity;
 import com.prototype.architecture.mvvm.ui.drawer.DrawerAdapter;
@@ -45,38 +45,38 @@ public class Coordinator {
     public void didDrawerItemSelected(BaseActivity baseActivity, DrawerAdapter.DrawerItem item) {
         switch (item.getItemType()) {
             case module:
-                latestSelectedModuleEid = item.getModuleEntity().getEid();
-                switch (item.getModuleEntity().getType()) {
-                    case ModuleEntity.HOME:
+                latestSelectedModuleEid = item.getModule().getEid();
+                switch (item.getModule().getType()) {
+                    case Module.HOME:
 //                        Navigator.showScreen(parentFrag, new HomeFragmentForWildFire());
                         break;
 
-                    case ModuleEntity.QUIZ:
+                    case Module.QUIZ:
 //                        AppManager.menuItem = MenuItems.QUIZ;
 //                        Navigator.showScreen(parentFrag, new ListsFragment());
                         break;
 
-                    case ModuleEntity.RESOURCES:
-                    case ModuleEntity.CHECKLIST:
-                    case ModuleEntity.VIDEOS:
-                    case ModuleEntity.PDF:
-                    case ModuleEntity.FAQ:
+                    case Module.RESOURCES:
+                    case Module.CHECKLIST:
+                    case Module.VIDEOS:
+                    case Module.PDF:
+                    case Module.FAQ:
 //                        AppManager.menuItem = MenuItems.CATEGORY;
 //                        Navigator.showScreen(parentFrag, new ListsFragment());
                         break;
 
-                    case ModuleEntity.NEWS:
+                    case Module.NEWS:
                         baseActivity.replaceFragment(NewsFragment.newInstance(), true);
 //                        Navigator.showScreen(parentFrag, new HomeFragment());
                         break;
 
-                    case ModuleEntity.LIBRARY:
+                    case Module.LIBRARY:
 //                        Navigator.showScreen(parentFrag, new ShelfFragment());// comment this line to get reader temporarily
                         // Helper.launchReader(); // Uncomment this line to get reader temporarily
                         break;
 
-                    case ModuleEntity.ABOUT:
-                    case ModuleEntity.TEXT_TYPE:
+                    case Module.ABOUT:
+                    case Module.TEXT_TYPE:
 //                        Bundle bundle = new Bundle();
 //                        String item = "";
 //                        if (AppManager.modules.get(position).getTitle().toLowerCase().contains("about"))

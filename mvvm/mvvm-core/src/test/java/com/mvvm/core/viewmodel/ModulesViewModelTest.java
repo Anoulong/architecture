@@ -17,8 +17,8 @@
 package com.mvvm.core.viewmodel;
 
 import com.mvvm.core.local.ApplicationDatabase;
+import com.mvvm.core.local.module.Module;
 import com.mvvm.core.local.module.ModuleDao;
-import com.mvvm.core.local.module.ModuleEntity;
 import com.mvvm.core.manager.EndpointManager;
 import com.mvvm.core.remote.ApiService;
 import com.mvvm.core.repository.ModulesRepository;
@@ -62,9 +62,9 @@ public class ModulesViewModelTest {
     private NetworkConnectivityService networkConnectivityService;
 
     @Captor
-    private ArgumentCaptor<List<ModuleEntity>> mListModulesArgumentCaptor; //Capture return
+    private ArgumentCaptor<List<Module>> mListModulesArgumentCaptor; //Capture return
 
-    private TestSubscriber<List<ModuleEntity>> moduleSubscriber; // Subscribe
+    private TestSubscriber<List<Module>> moduleSubscriber; // Subscribe
 
 
     @Before

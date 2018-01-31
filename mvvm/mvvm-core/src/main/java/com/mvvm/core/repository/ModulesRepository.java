@@ -2,7 +2,7 @@ package com.mvvm.core.repository;
 
 
 import com.mvvm.core.local.ApplicationDatabase;
-import com.mvvm.core.local.module.ModuleEntity;
+import com.mvvm.core.local.module.Module;
 import com.mvvm.core.manager.EndpointManager;
 import com.mvvm.core.remote.ApiService;
 import com.mvvm.core.service.NetworkConnectivityService;
@@ -26,7 +26,7 @@ public class ModulesRepository extends BaseRepository {
     private ApplicationDatabase applicationDatabase;
     private EndpointManager endpointManager;
     private NetworkConnectivityService networkConnectivityService;
-    private BehaviorSubject<List<ModuleEntity>> modulesObservable = BehaviorSubject.createDefault(new ArrayList<ModuleEntity>());
+    private BehaviorSubject<List<Module>> modulesObservable = BehaviorSubject.createDefault(new ArrayList<Module>());
 
     public ModulesRepository(ApplicationDatabase applicationDatabase,
                              ApiService apiService,
@@ -43,9 +43,9 @@ public class ModulesRepository extends BaseRepository {
      * If no internet just retrieve local data otherwise
      * if on mobile or wifi pull latest data from remote API
      *
-     * @return Observable of List<ModuleEntity>
+     * @return Observable of List<Module>
      */
-    public Flowable<List<ModuleEntity>> loadModules() {
+    public Flowable<List<Module>> loadModules() {
         addDisposable(networkConnectivityService.getConnectionTypeObservable()
                 .filter(type -> !type.equals(NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET))
                 .subscribe(status -> fetchRemoteData(), modulesObservable::onError));
@@ -58,7 +58,7 @@ public class ModulesRepository extends BaseRepository {
      * @return
      */
     @Override
-    public Flowable<List<ModuleEntity>> retrieveLocalData() {
+    public Flowable<List<Module>> retrieveLocalData() {
         addDisposable(applicationDatabase
                 .moduleDao()
                 .loadAllModules()

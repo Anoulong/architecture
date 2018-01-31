@@ -15,8 +15,7 @@ package com.mvvm.core.repository;
 
 
 import com.mvvm.core.local.ApplicationDatabase;
-import com.mvvm.core.local.module.ModuleEntity;
-import com.mvvm.core.local.news.NewsEntity;
+import com.mvvm.core.local.news.News;
 import com.mvvm.core.manager.EndpointManager;
 import com.mvvm.core.remote.ApiService;
 import com.mvvm.core.service.NetworkConnectivityService;
@@ -30,7 +29,7 @@ import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.BehaviorSubject;
 
 /**
- * Repository that handles NewsEntity objects. Contains business logic.
+ * Repository that handles News objects. Contains business logic.
  */
 public class NewsRepository  extends BaseRepository  {
 
@@ -40,7 +39,7 @@ public class NewsRepository  extends BaseRepository  {
     private ApplicationDatabase applicationDatabase;
     private EndpointManager endpointManager;
     private NetworkConnectivityService networkConnectivityService;
-    private BehaviorSubject<List<NewsEntity>> newsObservable = BehaviorSubject.createDefault(new ArrayList<NewsEntity>());
+    private BehaviorSubject<List<News>> newsObservable = BehaviorSubject.createDefault(new ArrayList<News>());
     private String moduleEid;
 
     public NewsRepository(ApplicationDatabase applicationDatabase,
@@ -59,9 +58,9 @@ public class NewsRepository  extends BaseRepository  {
      * If no internet just retrieve local data otherwise
      * if on mobile or wifi pull latest data from remote API
      *
-     * @return Observable of List<NewsEntity>
+     * @return Observable of List<News>
      */
-    public Flowable<List<NewsEntity>> loadNews() {
+    public Flowable<List<News>> loadNews() {
         addDisposable(networkConnectivityService.getConnectionTypeObservable()
                 .filter(type -> !type.equals(NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET))
                 .subscribe(status -> fetchRemoteData(), newsObservable::onError));
@@ -74,7 +73,7 @@ public class NewsRepository  extends BaseRepository  {
      * @return
      */
     @Override
-    public Flowable<List<NewsEntity>> retrieveLocalData() {
+    public Flowable<List<News>> retrieveLocalData() {
         addDisposable(applicationDatabase
                 .newsDao()
                 .loadAllNews()

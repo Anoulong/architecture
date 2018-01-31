@@ -20,7 +20,7 @@ import java.io.Serializable;
  * Created by Anou Chanthavong on 2018-01-29.
  ******************************************************************************/
 @Entity
-public class ModuleEntity {
+public class Module {
 
     public static final String TEXT_TYPE = "text";
     public static final String ABOUT = "about-us";

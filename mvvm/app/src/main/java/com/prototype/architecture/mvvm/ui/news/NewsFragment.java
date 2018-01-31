@@ -12,19 +12,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.mvvm.core.common.utils.StringUtils;
-import com.mvvm.core.local.module.ModuleEntity;
-import com.mvvm.core.local.news.NewsEntity;
+import com.mvvm.core.local.news.News;
 import com.prototype.architecture.mvvm.R;
 import com.prototype.architecture.mvvm.RcaApplication;
 import com.prototype.architecture.mvvm.coordinator.Coordinator;
-import com.prototype.architecture.mvvm.ui.MainActivity;
 import com.prototype.architecture.mvvm.ui.base.BaseFragment;
-import com.prototype.architecture.mvvm.ui.drawer.DrawerAdapter;
-import com.prototype.architecture.mvvm.viewmodel.ModulesViewModel;
 import com.prototype.architecture.mvvm.viewmodel.NewsViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -123,10 +117,10 @@ public class NewsFragment extends BaseFragment {
         newsTextView = v.findViewById(R.id.newsTextView);
     }
 
-    private void updateData(List<NewsEntity> newsEntities) {
+    private void updateData(List<News> newsEntities) {
         if (newsEntities != null && !newsEntities.isEmpty()) {
             String news = "";
-            for (NewsEntity n : newsEntities) {
+            for (News n : newsEntities) {
                 news += n.getTitle().getEn() + "\n";
             }
             newsTextView.setText(news);

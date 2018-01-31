@@ -24,9 +24,9 @@ import io.reactivex.Flowable;
  ******************************************************************************/
 @Dao
 public interface ModuleDao {
-    @Query("SELECT * FROM ModuleEntity")
-    Flowable<List<ModuleEntity>> loadAllModules();
+    @Query("SELECT * FROM Module")
+    Flowable<List<Module>> loadAllModules();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<ModuleEntity> modules);
+    void insertAll(List<Module> modules);
 }

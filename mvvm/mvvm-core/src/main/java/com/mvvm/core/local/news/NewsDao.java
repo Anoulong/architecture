@@ -5,8 +5,6 @@ import android.arch.persistence.room.Insert;
 import android.arch.persistence.room.OnConflictStrategy;
 import android.arch.persistence.room.Query;
 
-import com.mvvm.core.local.module.ModuleEntity;
-
 import java.util.List;
 
 import io.reactivex.Flowable;
@@ -27,9 +25,9 @@ import io.reactivex.Flowable;
 
 @Dao
 public interface NewsDao {
-    @Query("SELECT * FROM NewsEntity")
-    Flowable<List<NewsEntity>> loadAllNews();
+    @Query("SELECT * FROM News")
+    Flowable<List<News>> loadAllNews();
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<NewsEntity> news);
+    void insertAll(List<News> news);
 }

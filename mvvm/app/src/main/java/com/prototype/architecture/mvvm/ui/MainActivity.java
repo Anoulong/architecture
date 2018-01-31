@@ -17,7 +17,7 @@ import android.widget.Toast;
 
 
 import com.mvvm.core.common.utils.StringUtils;
-import com.mvvm.core.local.module.ModuleEntity;
+import com.mvvm.core.local.module.Module;
 import com.prototype.architecture.mvvm.R;
 import com.prototype.architecture.mvvm.RcaApplication;
 import com.prototype.architecture.mvvm.coordinator.Coordinator;
@@ -120,11 +120,11 @@ public class MainActivity extends BaseActivity {
         });
     }
 
-    private void updateData(List<ModuleEntity> moduleEntities) {
+    private void updateData(List<Module> moduleEntities) {
         if (moduleEntities != null && !moduleEntities.isEmpty()) {
             List<DrawerAdapter.DrawerItem> items = new ArrayList<>();
             items.add(new DrawerAdapter.DrawerItem(DrawerAdapter.DrawerItem.ItemType.header));
-            for (ModuleEntity m : moduleEntities) {
+            for (Module m : moduleEntities) {
                 items.add(new DrawerAdapter.DrawerItem(DrawerAdapter.DrawerItem.ItemType.module, m));
             }
             items.add(new DrawerAdapter.DrawerItem(DrawerAdapter.DrawerItem.ItemType.settings, getString(R.string.action_settings)));
