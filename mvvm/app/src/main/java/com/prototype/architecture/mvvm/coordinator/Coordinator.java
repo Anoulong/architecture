@@ -1,6 +1,7 @@
 package com.prototype.architecture.mvvm.coordinator;
 
 import android.content.Intent;
+import android.util.Log;
 
 import com.mvvm.core.local.module.Module;
 import com.prototype.architecture.mvvm.ui.MainActivity;
@@ -25,6 +26,7 @@ import com.prototype.architecture.mvvm.ui.splash.SplashActivity;
  * Created by Anou Chanthavong on 2017-12-15.
  ******************************************************************************/
 public class Coordinator {
+    private static final String TAG = Coordinator.class.getSimpleName();
 
     private String latestSelectedModuleEid = "";
 
@@ -32,6 +34,7 @@ public class Coordinator {
     }
 
     public String getLatestSelectedModuleEid() {
+        Log.d(TAG, "getLatestSelectedModuleEid: " + latestSelectedModuleEid);
         return latestSelectedModuleEid;
     }
 
@@ -43,6 +46,7 @@ public class Coordinator {
     }
 
     public void didDrawerItemSelected(BaseActivity baseActivity, DrawerAdapter.DrawerItem item) {
+        Log.d(TAG, "didDrawerItemSelected: " + item.getItemType().name());
         switch (item.getItemType()) {
             case module:
                 latestSelectedModuleEid = item.getModule().getEid();
