@@ -5,6 +5,7 @@ import android.arch.lifecycle.ViewModelProvider;
 
 
 import com.prototype.architecture.mvvm.viewmodel.ModulesViewModel;
+import com.prototype.architecture.mvvm.viewmodel.NewsViewModel;
 import com.prototype.architecture.mvvm.viewmodel.ViewModelFactory;
 
 import dagger.Binds;
@@ -18,10 +19,10 @@ public abstract class ViewModelModule {
     @ViewModelKey(ModulesViewModel.class)
     public abstract ViewModel bindModuleListViewModel(ModulesViewModel moduleListViewModel);
 
-//    @Binds
-//    @IntoMap
-//    @ViewModelKey(NewsViewModel.class)
-//    abstract ViewModel bindNewsViewModel(NewsViewModel newsViewModel);
+    @Binds
+    @IntoMap
+    @ViewModelKey(NewsViewModel.class)
+    abstract ViewModel bindNewsViewModel(NewsViewModel newsViewModel);
 
 
     @Binds

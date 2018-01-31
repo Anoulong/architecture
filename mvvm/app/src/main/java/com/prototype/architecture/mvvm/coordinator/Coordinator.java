@@ -26,7 +26,7 @@ import com.prototype.architecture.mvvm.ui.splash.SplashActivity;
  ******************************************************************************/
 public class Coordinator {
 
-    String latestSelectedModuleEid = "";
+    private String latestSelectedModuleEid = "";
 
     public Coordinator() {
     }
@@ -90,7 +90,7 @@ public class Coordinator {
                         break;
                 }
 
-                
+
                 break;
             case settings:
                 baseActivity.startActivity(SettingsActivity.intent(baseActivity));

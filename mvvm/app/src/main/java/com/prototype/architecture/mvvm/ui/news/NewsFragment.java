@@ -1,20 +1,27 @@
 package com.prototype.architecture.mvvm.ui.news;
 
 import android.arch.lifecycle.ViewModelProvider;
+import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.prototype.architecture.mvvm.R;
 import com.prototype.architecture.mvvm.RcaApplication;
 import com.prototype.architecture.mvvm.coordinator.Coordinator;
+import com.prototype.architecture.mvvm.ui.MainActivity;
 import com.prototype.architecture.mvvm.ui.base.BaseFragment;
 import com.prototype.architecture.mvvm.viewmodel.ModulesViewModel;
+import com.prototype.architecture.mvvm.viewmodel.NewsViewModel;
 
 import javax.inject.Inject;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 
 
 /*******************************************************************************
@@ -41,7 +48,7 @@ public class NewsFragment extends BaseFragment {
     Coordinator coordinator;// Handle navigation
 
     // Data Model to fill the views with
-    private ModulesViewModel viewModel;
+    private NewsViewModel viewModel;
 
 
     public static NewsFragment newInstance() {
@@ -70,10 +77,28 @@ public class NewsFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
         
     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(NewsViewModel.class);
+    }
+
+    @Override
+    protected void setupObservables() {
+        super.setupObservables();
+        addDisposable(viewModel.getNews()
+                .distinctUntilChanged()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .unsubscribeOn(Schedulers.io())
+                .subscribe(data -> Toast.makeText(getContext(), data.size(), Toast.LENGTH_LONG).show(), error -> {
+                    Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
+                }));
+    }
 
     @Override
     protected String getFragmentTitle() {
-        return null;
+        return TAG;
     }
 
     @Override

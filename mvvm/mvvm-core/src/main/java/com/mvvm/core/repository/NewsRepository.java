@@ -15,6 +15,7 @@ package com.mvvm.core.repository;
 
 
 import com.mvvm.core.local.ApplicationDatabase;
+import com.mvvm.core.local.module.ModuleEntity;
 import com.mvvm.core.local.news.NewsEntity;
 import com.mvvm.core.manager.EndpointManager;
 import com.mvvm.core.remote.ApiService;
@@ -23,6 +24,9 @@ import com.mvvm.core.service.NetworkConnectivityService;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.BackpressureStrategy;
+import io.reactivex.Flowable;
+import io.reactivex.schedulers.Schedulers;
 import io.reactivex.subjects.BehaviorSubject;
 
 /**
@@ -30,21 +34,67 @@ import io.reactivex.subjects.BehaviorSubject;
  */
 public class NewsRepository  extends BaseRepository  {
 
-    private static final String TAG = ModulesRepository.class.getSimpleName();
+    private static final String TAG = NewsRepository.class.getSimpleName();
 
     private ApiService apiService;
     private ApplicationDatabase applicationDatabase;
     private EndpointManager endpointManager;
     private NetworkConnectivityService networkConnectivityService;
-    private BehaviorSubject<List<NewsEntity>> modulesObservable = BehaviorSubject.createDefault(new ArrayList<NewsEntity>());
+    private BehaviorSubject<List<NewsEntity>> newsObservable = BehaviorSubject.createDefault(new ArrayList<NewsEntity>());
+    private String moduleEid;
 
-    @Override
-    public <LocalData> LocalData retrieveLocalData() {
-        return null;
+    public NewsRepository(ApplicationDatabase applicationDatabase,
+                             ApiService apiService,
+                             EndpointManager endpointManager,
+                             NetworkConnectivityService networkConnectivityService, String moduleEid) {
+        super();
+        this.apiService = apiService;
+        this.applicationDatabase = applicationDatabase;
+        this.endpointManager = endpointManager;
+        this.networkConnectivityService = networkConnectivityService;
+        this.moduleEid = moduleEid;
     }
 
+    /**
+     * If no internet just retrieve local data otherwise
+     * if on mobile or wifi pull latest data from remote API
+     *
+     * @return Observable of List<NewsEntity>
+     */
+    public Flowable<List<NewsEntity>> loadNews() {
+        addDisposable(networkConnectivityService.getConnectionTypeObservable()
+                .filter(type -> !type.equals(NetworkConnectivityService.ConnectionType.TYPE_NO_INTERNET))
+                .subscribe(status -> fetchRemoteData(), newsObservable::onError));
+
+        return retrieveLocalData();
+    }
+
+    /**
+     *  Load data from local Room Database
+     * @return
+     */
+    @Override
+    public Flowable<List<NewsEntity>> retrieveLocalData() {
+        addDisposable(applicationDatabase
+                .newsDao()
+                .loadAllNews()
+                .subscribeOn(Schedulers.computation())
+                .observeOn(Schedulers.computation())
+                .subscribe(localData -> newsObservable.onNext(localData), newsObservable::onError));
+
+        return newsObservable.toFlowable(BackpressureStrategy.LATEST);
+    }
+
+    /**
+     * Pull data from remote API and also update the local database
+     */
     @Override
     public void fetchRemoteData() {
-
+        addDisposable(apiService
+                .fetchNews(endpointManager.getAuthorizationToken(), endpointManager.getAppId(), moduleEid)
+                .distinctUntilChanged()
+                .subscribeOn(Schedulers.io())
+                .observeOn(Schedulers.io())
+                .subscribe(remoteData -> applicationDatabase.newsDao().insertAll(remoteData), newsObservable::onError));
     }
 }

@@ -7,6 +7,7 @@ import com.mvvm.core.local.ApplicationDatabase;
 import com.mvvm.core.manager.EndpointManager;
 import com.mvvm.core.remote.ApiService;
 import com.mvvm.core.repository.ModulesRepository;
+import com.mvvm.core.repository.NewsRepository;
 import com.mvvm.core.service.NetworkConnectivityService;
 import com.prototype.architecture.mvvm.RcaApplication;
 import com.prototype.architecture.mvvm.coordinator.Coordinator;
@@ -72,9 +73,16 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    public ModulesRepository providesRcaRepository(ApplicationDatabase applicationDatabase, ApiService apiService, EndpointManager endpointManager, NetworkConnectivityService networkConnectivityService) {
+    public ModulesRepository providesModulesRepository(ApplicationDatabase applicationDatabase, ApiService apiService, EndpointManager endpointManager, NetworkConnectivityService networkConnectivityService) {
         return new ModulesRepository(applicationDatabase, apiService, endpointManager, networkConnectivityService);
     }
+
+    @Provides
+    @Singleton
+    public NewsRepository providesNewsRepository(ApplicationDatabase applicationDatabase, ApiService apiService, EndpointManager endpointManager, NetworkConnectivityService networkConnectivityService, Coordinator coordinator) {
+        return new NewsRepository(applicationDatabase, apiService, endpointManager, networkConnectivityService, coordinator.getLatestSelectedModuleEid());
+    }
+
 
     @Provides
     @Singleton

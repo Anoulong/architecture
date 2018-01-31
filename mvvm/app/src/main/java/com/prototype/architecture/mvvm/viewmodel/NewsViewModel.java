@@ -1,15 +1,11 @@
-package com.mvvm.core.local.news;
+package com.prototype.architecture.mvvm.viewmodel;
 
-import android.arch.persistence.room.Dao;
-import android.arch.persistence.room.Insert;
-import android.arch.persistence.room.OnConflictStrategy;
-import android.arch.persistence.room.Query;
+import com.mvvm.core.repository.ModulesRepository;
+import com.mvvm.core.repository.NewsRepository;
+import com.mvvm.core.viewmodel.CoreModulesViewModel;
+import com.mvvm.core.viewmodel.CoreNewsViewModel;
 
-import com.mvvm.core.local.module.ModuleEntity;
-
-import java.util.List;
-
-import io.reactivex.Flowable;
+import javax.inject.Inject;
 
 /*******************************************************************************
  * QuickSeries® Publishing inc.
@@ -22,14 +18,12 @@ import io.reactivex.Flowable;
  * Information and shall use it only in accordance with the terms of the license
  * agreement you entered into with QuickSeries® and QuickSeries's Partners.
  * <p>
- * Created by Anou Chanthavong on 2018-01-30.
+ * Created by Anou Chanthavong on 2018-01-31.
  ******************************************************************************/
+public class NewsViewModel extends CoreNewsViewModel {
 
-@Dao
-public interface NewsDao {
-    @Query("SELECT * FROM NewsEntity")
-    Flowable<List<NewsEntity>> loadAllNews();
-
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertAll(List<NewsEntity> news);
+    @Inject
+    public NewsViewModel(NewsRepository newsRepository) {
+        super(newsRepository);
+    }
 }
