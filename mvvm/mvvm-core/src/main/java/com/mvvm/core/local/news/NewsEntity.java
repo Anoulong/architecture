@@ -1,6 +1,7 @@
 package com.mvvm.core.local.news;
 
 
+import android.arch.persistence.room.Embedded;
 import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
@@ -11,58 +12,31 @@ import java.io.Serializable;
  * Created by laf on 2017-05-05.
  */
 @Entity
-public class NewsEntity {
+public class NewsEntity implements Serializable{
 
     @PrimaryKey
     @NonNull
+    private String _id;
+    private String slug;
     private String eid;
-    private String photo;
-    private String status;
-    private String etag;
-    private String createdAt;
-    private String authorId;
-    private String caption;
-    private String credits;
-    private String subtitle;
-    private String updatedAt;
-    private String title;
-    private String type;
-    private String links;
-    private String body;
+    @Embedded
+    private Title title;
 
-    public NewsEntity() {
+    @NonNull
+    public String getId() {
+        return _id;
     }
 
-    public String getPhoto() {
-        return photo;
+    public void setId(@NonNull String _id) {
+        this._id = _id;
     }
 
-    public void setPhoto(String photo) {
-        this.photo = photo;
+    public String getSlug() {
+        return slug;
     }
 
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getEtag() {
-        return etag;
-    }
-
-    public void setEtag(String etag) {
-        this.etag = etag;
-    }
-
-    public String getCreatedAt() {
-        return createdAt;
-    }
-
-    public void setCreatedAt(String createdAt) {
-        this.createdAt = createdAt;
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
     public String getEid() {
@@ -73,84 +47,25 @@ public class NewsEntity {
         this.eid = eid;
     }
 
-    public String getAuthorId() {
-        return authorId;
-    }
-
-    public void setAuthorId(String authorId) {
-        this.authorId = authorId;
-    }
-
-    public String getCaption() {
-        return caption;
-    }
-
-    public void setCaption(String caption) {
-        this.caption = caption;
-    }
-
-    public String getSubtitle() {
-        return subtitle;
-    }
-
-    public void setSubtitle(String subtitle) {
-        this.subtitle = subtitle;
-    }
-
-    public String getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(String updatedAt) {
-        this.updatedAt = updatedAt;
-    }
-
-    public String getTitle() {
+    public Title getTitle() {
         return title;
     }
 
-    public void setTitle(String title) {
+    public void setTitle(Title title) {
         this.title = title;
     }
 
-    public String getType() {
-        return type;
-    }
+    @Entity
+    public static class Title {
 
-    public void setType(String type) {
-        this.type = type;
-    }
+        private String en;
 
-    public String getLinks() {
-        return links;
-    }
+        public String getEn() {
+            return en;
+        }
 
-    public void setLinks(String links) {
-        this.links = links;
-    }
-
-    public String getBody() {
-        return body;
-    }
-
-    public void setBody(String body) {
-        this.body = body;
-    }
-
-//    public static Comparator<News> newsComparator = new Comparator<News>() {
-//        @Override
-//        public int compare(News news1, News news2) {
-//            Date date1 = Helper.parseDate(news1.getCreatedAt());
-//            Date date2 = Helper.parseDate(news2.getCreatedAt());
-//            return date2.compareTo(date1);
-//        }
-//    };
-
-    public String getCredits() {
-        return credits;
-    }
-
-    public void setCredits(String credits) {
-        this.credits = credits;
+        public void setEn(String en) {
+            this.en = en;
+        }
     }
 }

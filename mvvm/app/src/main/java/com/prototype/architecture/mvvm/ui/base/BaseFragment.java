@@ -89,6 +89,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     protected final void clearObservables() {
+        Log.d(getFragmentTag(), getFragmentTag() + " clearObservables");
         if (fragmentSubscriptions != null && !fragmentSubscriptions.isDisposed()) {
             fragmentSubscriptions.dispose();
         }

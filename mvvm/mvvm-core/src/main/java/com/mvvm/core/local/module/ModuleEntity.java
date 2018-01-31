@@ -4,6 +4,8 @@ import android.arch.persistence.room.Entity;
 import android.arch.persistence.room.PrimaryKey;
 import android.support.annotation.NonNull;
 
+import java.io.Serializable;
+
 /*******************************************************************************
  * QuickSeries® Publishing inc.
  * <p>
@@ -20,29 +22,29 @@ import android.support.annotation.NonNull;
 @Entity
 public class ModuleEntity {
 
-    final public static String TEXT_TYPE = "text";
-    final public static String ABOUT = "about-us";
-    final public static String HOME = "home";
-    final public static String QUIZ = "scored-assessment";
-    final public static String NEWS = "news";
-    final public static String RESOURCES = "resources";
-    final public static String LIBRARY = "library";
-    final public static String CHECKLIST = "checklists";
-    final public static String VIDEOS = "videos";
-    final public static String PDF = "pdfs";
-    final public static String FAQ = "faq";
+    public static final String TEXT_TYPE = "text";
+    public static final String ABOUT = "about-us";
+    public static final String HOME = "home";
+    public static final String QUIZ = "scored-assessment";
+    public static final String NEWS = "news";
+    public static final String RESOURCES = "resources";
+    public static final String LIBRARY = "library";
+    public static final String CHECKLIST = "checklists";
+    public static final String VIDEOS = "videos";
+    public static final String PDF = "pdfs";
+    public static final String FAQ = "faq";
 
     @PrimaryKey
     @NonNull
-    String _id;
-    String appEid;
-    String eid;
-    String title;
-    String description;
-    String type;
-    boolean active;
-    String createdAt;
-    String updatedAt;
+    private String _id;
+    private String appEid;
+    private String eid;
+    private String title;
+    private String description;
+    private String type;
+    private boolean active;
+    private String createdAt;
+    private String updatedAt;
 
 
     public String getId() {

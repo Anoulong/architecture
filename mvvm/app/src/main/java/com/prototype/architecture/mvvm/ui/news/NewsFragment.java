@@ -91,7 +91,7 @@ public class NewsFragment extends BaseFragment {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
-                .subscribe(data -> Toast.makeText(getContext(), data.size(), Toast.LENGTH_LONG).show(), error -> {
+                .subscribe(data -> Toast.makeText(getContext(), data.size() + "", Toast.LENGTH_LONG).show(), error -> {
                     Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                 }));
     }
