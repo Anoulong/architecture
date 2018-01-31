@@ -23,7 +23,7 @@ import com.prototype.architecture.mvvm.RcaApplication;
 import com.prototype.architecture.mvvm.coordinator.Coordinator;
 import com.prototype.architecture.mvvm.ui.base.BaseActivity;
 import com.prototype.architecture.mvvm.ui.drawer.DrawerAdapter;
-import com.prototype.architecture.mvvm.viewmodel.ModuleListViewModel;
+import com.prototype.architecture.mvvm.viewmodel.ModulesViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,7 +44,7 @@ public class MainActivity extends BaseActivity {
     Coordinator coordinator;// Handle navigation
 
     // Data Model to fill the views with
-    private ModuleListViewModel viewModel;
+    private ModulesViewModel viewModel;
 
     //Views
     private Toolbar toolbar;
@@ -70,7 +70,7 @@ public class MainActivity extends BaseActivity {
     @Override
     protected void onStart() {
         super.onStart();
-        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ModuleListViewModel.class);
+        viewModel = ViewModelProviders.of(this, viewModelFactory).get(ModulesViewModel.class);
     }
 
     @Override

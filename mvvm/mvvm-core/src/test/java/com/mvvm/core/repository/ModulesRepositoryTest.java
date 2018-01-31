@@ -49,10 +49,10 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
-public class ModuleRepositoryTest {
+public class ModulesRepositoryTest {
 
     @InjectMocks
-    private ModuleRepository moduleRepository;
+    private ModulesRepository moduleRepository;
 
     @Mock
     private ApplicationDatabase applicationDatabase;

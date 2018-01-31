@@ -1,15 +1,13 @@
-package com.prototype.architecture.mvvm.viewmodel;
+package com.mvvm.core.viewmodel;
 
 import android.arch.lifecycle.ViewModel;
 import android.util.Log;
 
 import com.mvvm.core.local.module.ModuleEntity;
-import com.mvvm.core.repository.ModuleRepository;
+import com.mvvm.core.repository.ModulesRepository;
 
 import java.util.List;
 import java.util.concurrent.TimeUnit;
-
-import javax.inject.Inject;
 
 import io.reactivex.Flowable;
 
@@ -26,13 +24,12 @@ import io.reactivex.Flowable;
  * <p>
  * Created by Anou Chanthavong on 2017-12-04.
  ******************************************************************************/
-public class ModuleListViewModel extends ViewModel  {
-    private static final String TAG = ModuleListViewModel.class.getSimpleName();
+public class CoreModulesViewModel extends ViewModel  {
+    private static final String TAG = CoreModulesViewModel.class.getSimpleName();
 
-    private final ModuleRepository moduleRepository;
+    private final ModulesRepository moduleRepository;
 
-    @Inject
-    public ModuleListViewModel(ModuleRepository moduleRepository) {
+    public CoreModulesViewModel(ModulesRepository moduleRepository) {
         this.moduleRepository = moduleRepository;
     }
 

@@ -6,7 +6,7 @@ import android.arch.persistence.room.Room;
 import com.mvvm.core.local.ApplicationDatabase;
 import com.mvvm.core.manager.EndpointManager;
 import com.mvvm.core.remote.ApiService;
-import com.mvvm.core.repository.ModuleRepository;
+import com.mvvm.core.repository.ModulesRepository;
 import com.mvvm.core.service.NetworkConnectivityService;
 import com.prototype.architecture.mvvm.RcaApplication;
 import com.prototype.architecture.mvvm.coordinator.Coordinator;
@@ -72,8 +72,8 @@ public class ApplicationModule {
 
     @Provides
     @Singleton
-    public ModuleRepository providesRcaRepository(ApplicationDatabase applicationDatabase, ApiService apiService, EndpointManager endpointManager, NetworkConnectivityService networkConnectivityService) {
-        return new ModuleRepository(applicationDatabase, apiService, endpointManager, networkConnectivityService);
+    public ModulesRepository providesRcaRepository(ApplicationDatabase applicationDatabase, ApiService apiService, EndpointManager endpointManager, NetworkConnectivityService networkConnectivityService) {
+        return new ModulesRepository(applicationDatabase, apiService, endpointManager, networkConnectivityService);
     }
 
     @Provides

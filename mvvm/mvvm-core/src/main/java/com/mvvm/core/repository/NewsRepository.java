@@ -15,7 +15,6 @@ package com.mvvm.core.repository;
 
 
 import com.mvvm.core.local.ApplicationDatabase;
-import com.mvvm.core.local.module.ModuleEntity;
 import com.mvvm.core.local.news.NewsEntity;
 import com.mvvm.core.manager.EndpointManager;
 import com.mvvm.core.remote.ApiService;
@@ -31,7 +30,7 @@ import io.reactivex.subjects.BehaviorSubject;
  */
 public class NewsRepository  extends BaseRepository  {
 
-    private static final String TAG = ModuleRepository.class.getSimpleName();
+    private static final String TAG = ModulesRepository.class.getSimpleName();
 
     private ApiService apiService;
     private ApplicationDatabase applicationDatabase;

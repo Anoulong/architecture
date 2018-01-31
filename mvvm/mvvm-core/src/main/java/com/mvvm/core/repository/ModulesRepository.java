@@ -18,9 +18,9 @@ import io.reactivex.subjects.BehaviorSubject;
 /**
  * Repository that handles Module objects. Contains business logic.
  */
-public class ModuleRepository extends BaseRepository {
+public class ModulesRepository extends BaseRepository {
 
-    private static final String TAG = ModuleRepository.class.getSimpleName();
+    private static final String TAG = ModulesRepository.class.getSimpleName();
 
     private ApiService apiService;
     private ApplicationDatabase applicationDatabase;
@@ -28,10 +28,10 @@ public class ModuleRepository extends BaseRepository {
     private NetworkConnectivityService networkConnectivityService;
     private BehaviorSubject<List<ModuleEntity>> modulesObservable = BehaviorSubject.createDefault(new ArrayList<ModuleEntity>());
 
-    public ModuleRepository(ApplicationDatabase applicationDatabase,
-                            ApiService apiService,
-                            EndpointManager endpointManager,
-                            NetworkConnectivityService networkConnectivityService) {
+    public ModulesRepository(ApplicationDatabase applicationDatabase,
+                             ApiService apiService,
+                             EndpointManager endpointManager,
+                             NetworkConnectivityService networkConnectivityService) {
         super();
         this.apiService = apiService;
         this.applicationDatabase = applicationDatabase;

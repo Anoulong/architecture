@@ -12,7 +12,7 @@ import com.prototype.architecture.mvvm.R;
 import com.prototype.architecture.mvvm.RcaApplication;
 import com.prototype.architecture.mvvm.coordinator.Coordinator;
 import com.prototype.architecture.mvvm.ui.base.BaseFragment;
-import com.prototype.architecture.mvvm.viewmodel.ModuleListViewModel;
+import com.prototype.architecture.mvvm.viewmodel.ModulesViewModel;
 
 import javax.inject.Inject;
 
@@ -41,7 +41,7 @@ public class NewsFragment extends BaseFragment {
     Coordinator coordinator;// Handle navigation
 
     // Data Model to fill the views with
-    private ModuleListViewModel viewModel;
+    private ModulesViewModel viewModel;
 
 
     public static NewsFragment newInstance() {
