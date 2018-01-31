@@ -40,19 +40,21 @@ public class ModuleEntity {
     private String appEid;
     private String eid;
     private String title;
-    private String description;
+    private String slug;
     private String type;
+    private String description;
     private boolean active;
     private String createdAt;
     private String updatedAt;
 
 
-    public String getId() {
+    @NonNull
+    public String get_id() {
         return _id;
     }
 
-    public void setId(String id) {
-        this._id = id;
+    public void set_id(@NonNull String _id) {
+        this._id = _id;
     }
 
     public String getAppEid() {
@@ -77,6 +79,14 @@ public class ModuleEntity {
 
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public String getSlug() {
+        return slug;
+    }
+
+    public void setSlug(String slug) {
+        this.slug = slug;
     }
 
     public String getDescription() {

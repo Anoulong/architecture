@@ -24,13 +24,22 @@ public class NewsEntity implements Serializable{
     private Title title;
     @Embedded
     private Photo photo;
+    @Embedded
+    private PhotoCredit photo_credit;
+    @Embedded
+    private Caption caption;
+    @Embedded
+    private Body body;
+    private String author_eid;
+    @Embedded
+    private Fields fields;
 
     @NonNull
-    public String getId() {
+    public String get_id() {
         return _id;
     }
 
-    public void setId(@NonNull String _id) {
+    public void set_id(@NonNull String _id) {
         this._id = _id;
     }
 
@@ -66,6 +75,46 @@ public class NewsEntity implements Serializable{
         this.photo = photo;
     }
 
+    public PhotoCredit getPhoto_credit() {
+        return photo_credit;
+    }
+
+    public void setPhoto_credit(PhotoCredit photo_credit) {
+        this.photo_credit = photo_credit;
+    }
+
+    public Caption getCaption() {
+        return caption;
+    }
+
+    public void setCaption(Caption caption) {
+        this.caption = caption;
+    }
+
+    public Body getBody() {
+        return body;
+    }
+
+    public void setBody(Body body) {
+        this.body = body;
+    }
+
+    public String getAuthor_eid() {
+        return author_eid;
+    }
+
+    public void setAuthor_eid(String author_eid) {
+        this.author_eid = author_eid;
+    }
+
+    public Fields getFields() {
+        return fields;
+    }
+
+    public void setFields(Fields fields) {
+        this.fields = fields;
+    }
+
     //region Embedded Classes
     @Entity
     public static class Title {
@@ -94,5 +143,62 @@ public class NewsEntity implements Serializable{
             this.en = en;
         }
     }
+
+    @Entity
+    public static class PhotoCredit {
+        @ColumnInfo(name = "photo_credit")
+        private String en;
+
+        public String getEn() {
+            return en;
+        }
+
+        public void setEn(String en) {
+            this.en = en;
+        }
+    }
+
+    @Entity
+    public static class Caption {
+        @ColumnInfo(name = "caption_en")
+        private String en;
+
+        public String getEn() {
+            return en;
+        }
+
+        public void setEn(String en) {
+            this.en = en;
+        }
+    }
+
+    @Entity
+    public static class Body {
+        @ColumnInfo(name = "body_en")
+        private String en;
+
+        public String getEn() {
+            return en;
+        }
+
+        public void setEn(String en) {
+            this.en = en;
+        }
+    }
+
+    @Entity
+    public static class Fields {
+        @ColumnInfo(name = "fields_tag")
+        private String tag;
+
+        public String getTag() {
+            return tag;
+        }
+
+        public void setTag(String tag) {
+            this.tag = tag;
+        }
+    }
+
     //endregion
 }
