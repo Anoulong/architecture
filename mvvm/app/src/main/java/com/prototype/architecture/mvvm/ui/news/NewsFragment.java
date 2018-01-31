@@ -5,18 +5,27 @@ import android.arch.lifecycle.ViewModelProviders;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import com.mvvm.core.common.utils.StringUtils;
+import com.mvvm.core.local.module.ModuleEntity;
+import com.mvvm.core.local.news.NewsEntity;
 import com.prototype.architecture.mvvm.R;
 import com.prototype.architecture.mvvm.RcaApplication;
 import com.prototype.architecture.mvvm.coordinator.Coordinator;
 import com.prototype.architecture.mvvm.ui.MainActivity;
 import com.prototype.architecture.mvvm.ui.base.BaseFragment;
+import com.prototype.architecture.mvvm.ui.drawer.DrawerAdapter;
 import com.prototype.architecture.mvvm.viewmodel.ModulesViewModel;
 import com.prototype.architecture.mvvm.viewmodel.NewsViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -50,6 +59,7 @@ public class NewsFragment extends BaseFragment {
     // Data Model to fill the views with
     private NewsViewModel viewModel;
 
+    TextView newsTextView;
 
     public static NewsFragment newInstance() {
         
@@ -75,8 +85,10 @@ public class NewsFragment extends BaseFragment {
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        
+        this.setupView(view);
     }
+
+
     @Override
     public void onStart() {
         super.onStart();
@@ -91,7 +103,7 @@ public class NewsFragment extends BaseFragment {
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .unsubscribeOn(Schedulers.io())
-                .subscribe(data -> Toast.makeText(getContext(), data.size() + "", Toast.LENGTH_LONG).show(), error -> {
+                .subscribe(data -> updateData(data), error -> {
                     Toast.makeText(getContext(), error.getMessage(), Toast.LENGTH_LONG).show();
                 }));
     }
@@ -104,5 +116,22 @@ public class NewsFragment extends BaseFragment {
     @Override
     public String getFragmentTag() {
         return TAG;
+    }
+
+
+    private void setupView(View v) {
+        newsTextView = v.findViewById(R.id.newsTextView);
+    }
+
+    private void updateData(List<NewsEntity> newsEntities) {
+        if (newsEntities != null && !newsEntities.isEmpty()) {
+            String news = "";
+            for (NewsEntity n : newsEntities) {
+                news += n.getTitle().getEn() + "\n";
+            }
+            newsTextView.setText(news);
+
+            Log.d(TAG, "updateData: " + newsEntities.size() + " news");
+        }
     }
 }
