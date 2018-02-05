@@ -4,8 +4,8 @@ import android.arch.lifecycle.ViewModel;
 import android.arch.lifecycle.ViewModelProvider;
 
 
-import com.prototype.architecture.mvvm.viewmodel.ModulesViewModel;
-import com.prototype.architecture.mvvm.viewmodel.NewsViewModel;
+import com.mvvm.core.viewmodel.ModulesViewModel;
+import com.mvvm.core.viewmodel.NewsViewModel;
 import com.prototype.architecture.mvvm.viewmodel.ViewModelFactory;
 
 import dagger.Binds;

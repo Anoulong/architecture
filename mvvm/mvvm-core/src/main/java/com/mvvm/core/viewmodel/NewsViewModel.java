@@ -9,6 +9,8 @@ import com.mvvm.core.repository.NewsRepository;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import io.reactivex.Flowable;
 
 /*******************************************************************************
@@ -24,12 +26,13 @@ import io.reactivex.Flowable;
  * <p>
  * Created by Anou Chanthavong on 2017-12-04.
  ******************************************************************************/
-public class CoreNewsViewModel extends ViewModel  {
-    private static final String TAG = CoreNewsViewModel.class.getSimpleName();
+public class NewsViewModel extends ViewModel  {
+    private static final String TAG = NewsViewModel.class.getSimpleName();
 
     private final NewsRepository newsRepository;
 
-    public CoreNewsViewModel(NewsRepository newsRepository) {
+    @Inject
+    public NewsViewModel(NewsRepository newsRepository) {
         this.newsRepository = newsRepository;
     }
 

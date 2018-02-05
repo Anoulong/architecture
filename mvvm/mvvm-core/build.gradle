@@ -28,6 +28,7 @@ android {
 
 ext {
     archVersion = '1.0.0'
+    daggerVersion = "2.8"
 }
 
 dependencies {
@@ -51,6 +52,10 @@ dependencies {
     implementation 'com.squareup.retrofit2:retrofit:2.3.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+
+    // Dependency Injection
+    implementation "com.google.dagger:dagger:${daggerVersion}"
+    annotationProcessor "com.google.dagger:dagger-compiler:$daggerVersion"
 
     // Utils
     implementation "com.google.code.gson:gson:2.8.1"

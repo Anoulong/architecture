@@ -45,7 +45,7 @@ import static org.mockito.Mockito.verify;
 @RunWith(MockitoJUnitRunner.class)
 public class ModulesViewModelTest {
 
-    private CoreModulesViewModel moduleListViewModel;
+    private ModulesViewModel moduleListViewModel;
 
     @Mock
     private ModulesRepository moduleRepository;
@@ -69,7 +69,7 @@ public class ModulesViewModelTest {
 
     @Before
     public void setup() {
-        moduleListViewModel = new CoreModulesViewModel(moduleRepository);
+        moduleListViewModel = new ModulesViewModel(moduleRepository);
         moduleRepository = new ModulesRepository(applicationDatabase, apiService, endpointManager, networkConnectivityService);
         moduleSubscriber = TestSubscriber.create();
     }

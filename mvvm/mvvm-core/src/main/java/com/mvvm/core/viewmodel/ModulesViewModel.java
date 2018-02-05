@@ -9,6 +9,8 @@ import com.mvvm.core.repository.ModulesRepository;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
+import javax.inject.Inject;
+
 import io.reactivex.Flowable;
 
 /*******************************************************************************
@@ -24,12 +26,13 @@ import io.reactivex.Flowable;
  * <p>
  * Created by Anou Chanthavong on 2017-12-04.
  ******************************************************************************/
-public class CoreModulesViewModel extends ViewModel  {
-    private static final String TAG = CoreModulesViewModel.class.getSimpleName();
+public class ModulesViewModel extends ViewModel  {
+    private static final String TAG = ModulesViewModel.class.getSimpleName();
 
     private final ModulesRepository moduleRepository;
 
-    public CoreModulesViewModel(ModulesRepository moduleRepository) {
+    @Inject
+    public ModulesViewModel(ModulesRepository moduleRepository) {
         this.moduleRepository = moduleRepository;
     }
 

@@ -13,11 +13,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.mvvm.core.local.news.News;
+import com.mvvm.core.viewmodel.NewsViewModel;
 import com.prototype.architecture.mvvm.R;
 import com.prototype.architecture.mvvm.RcaApplication;
 import com.prototype.architecture.mvvm.coordinator.Coordinator;
 import com.prototype.architecture.mvvm.ui.base.BaseFragment;
-import com.prototype.architecture.mvvm.viewmodel.NewsViewModel;
 
 import java.util.List;
 

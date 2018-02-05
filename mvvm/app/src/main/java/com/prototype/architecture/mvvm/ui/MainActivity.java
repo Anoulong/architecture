@@ -18,12 +18,12 @@ import android.widget.Toast;
 
 import com.mvvm.core.common.utils.StringUtils;
 import com.mvvm.core.local.module.Module;
+import com.mvvm.core.viewmodel.ModulesViewModel;
 import com.prototype.architecture.mvvm.R;
 import com.prototype.architecture.mvvm.RcaApplication;
 import com.prototype.architecture.mvvm.coordinator.Coordinator;
 import com.prototype.architecture.mvvm.ui.base.BaseActivity;
 import com.prototype.architecture.mvvm.ui.drawer.DrawerAdapter;
-import com.prototype.architecture.mvvm.viewmodel.ModulesViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
